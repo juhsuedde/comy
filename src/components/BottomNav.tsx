@@ -20,45 +20,37 @@ export function BottomNav() {
 
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-background"
+      className="fixed inset-x-0 z-50 flex justify-center pointer-events-none"
+      style={{ bottom: "max(1rem, env(safe-area-inset-bottom))" }}
     >
-      <ul className="mx-auto flex max-w-md items-center justify-around px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-2">
+      <ul
+        className="pointer-events-auto flex items-center gap-2 px-3 py-2"
+        style={{
+          background: "#1A1A1A",
+          borderRadius: "40px",
+          boxShadow: "0 10px 30px -10px rgba(0,0,0,0.35), 0 4px 12px -4px rgba(0,0,0,0.2)",
+        }}
+      >
         {items.map(({ to, label, icon: Icon, primary }) => {
           const isActive =
             to === "/" ? pathname === "/" : pathname.startsWith(to);
 
           return (
             <li key={label}>
-              <Link
-                to={to}
-                className="group flex flex-col items-center gap-0.5 py-1"
-              >
+              <Link to={to} aria-label={label} className="group block">
                 {primary ? (
-                  <span
-                    className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-primary-foreground transition-transform group-hover:scale-105 group-active:scale-95"
-                  >
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform group-hover:scale-105 group-active:scale-95">
                     <Icon className="h-6 w-6" strokeWidth={2.5} />
                   </span>
                 ) : (
                   <span
-                    className={`flex h-10 w-10 items-center justify-center rounded-full transition-all ${
-                      isActive
-                        ? "bg-primary/10 text-primary"
-                        : "text-muted-foreground group-hover:text-foreground"
+                    className={`flex h-11 w-11 items-center justify-center rounded-full transition-colors ${
+                      isActive ? "bg-white/15 text-white" : "text-white/70 group-hover:text-white"
                     }`}
                   >
                     <Icon className="h-5 w-5" strokeWidth={2} />
                   </span>
                 )}
-                <span
-                  className={`text-[10px] font-bold tracking-wide ${
-                    isActive && !primary
-                      ? "text-foreground"
-                      : "text-muted-foreground"
-                  }`}
-                >
-                  {label}
-                </span>
               </Link>
             </li>
           );

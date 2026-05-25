@@ -51,7 +51,7 @@ export function MealCard({
             />
             <div className="flex items-baseline gap-2 text-white">
               <span className="text-sm font-bold">{authorName}</span>
-              <span className="text-xs font-medium text-white/70">
+              <span className="text-xs font-medium" style={{ color: "#AEB8A0" }}>
                 · {timeAgo}
               </span>
             </div>
