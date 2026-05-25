@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const filters = ["All", "Breakfast", "Lunch", "Dinner", "Snack"] as const;
-type Filter = (typeof filters)[number];
+export type Filter = (typeof filters)[number];
 
 interface Props {
   value?: Filter;
