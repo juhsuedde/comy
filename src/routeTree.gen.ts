@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SplashRouteImport } from './routes/splash'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as PostRouteImport } from './routes/post'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MealIdRouteImport } from './routes/meal.$id'
@@ -29,6 +30,11 @@ const ProfileRoute = ProfileRouteImport.update({
 const PostRoute = PostRouteImport.update({
   id: '/post',
   path: '/post',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExploreRoute = ExploreRouteImport.update({
@@ -50,6 +56,7 @@ const MealIdRoute = MealIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/explore': typeof ExploreRoute
+  '/login': typeof LoginRoute
   '/post': typeof PostRoute
   '/profile': typeof ProfileRoute
   '/splash': typeof SplashRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/explore': typeof ExploreRoute
+  '/login': typeof LoginRoute
   '/post': typeof PostRoute
   '/profile': typeof ProfileRoute
   '/splash': typeof SplashRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/explore': typeof ExploreRoute
+  '/login': typeof LoginRoute
   '/post': typeof PostRoute
   '/profile': typeof ProfileRoute
   '/splash': typeof SplashRoute
@@ -74,13 +83,28 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/explore' | '/post' | '/profile' | '/splash' | '/meal/$id'
+  fullPaths:
+    | '/'
+    | '/explore'
+    | '/login'
+    | '/post'
+    | '/profile'
+    | '/splash'
+    | '/meal/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/explore' | '/post' | '/profile' | '/splash' | '/meal/$id'
+  to:
+    | '/'
+    | '/explore'
+    | '/login'
+    | '/post'
+    | '/profile'
+    | '/splash'
+    | '/meal/$id'
   id:
     | '__root__'
     | '/'
     | '/explore'
+    | '/login'
     | '/post'
     | '/profile'
     | '/splash'
@@ -90,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ExploreRoute: typeof ExploreRoute
+  LoginRoute: typeof LoginRoute
   PostRoute: typeof PostRoute
   ProfileRoute: typeof ProfileRoute
   SplashRoute: typeof SplashRoute
@@ -119,6 +144,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PostRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/explore': {
       id: '/explore'
       path: '/explore'
@@ -146,6 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ExploreRoute: ExploreRoute,
+  LoginRoute: LoginRoute,
   PostRoute: PostRoute,
   ProfileRoute: ProfileRoute,
   SplashRoute: SplashRoute,
