@@ -1,10 +1,17 @@
 import { useState, useRef, useEffect } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { Camera, X } from "lucide-react";
+import { Camera, X, Sun, Salad, Moon, Cookie, CircleEllipsis } from "lucide-react";
 import { BottomNav } from "@/components/BottomNav";
 
-const categories = ["Breakfast", "Lunch", "Dinner", "Snack", "Other"] as const;
-type Category = (typeof categories)[number];
+const categoryConfig = [
+  { label: "Breakfast", Icon: Sun, bg: "#FFF8E1" },
+  { label: "Lunch", Icon: Salad, bg: "#F0F4EF" },
+  { label: "Dinner", Icon: Moon, bg: "#F3F0FA" },
+  { label: "Snack", Icon: Cookie, bg: "#FFF1EC" },
+  { label: "Other", Icon: CircleEllipsis, bg: "#F5F5F3" },
+] as const;
+
+type Category = (typeof categoryConfig)[number]["label"];
 
 const tagOptions = [
   { label: "Homemade", emoji: "🏠" },
