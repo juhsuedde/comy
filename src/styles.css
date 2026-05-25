@@ -74,6 +74,9 @@
   --border: #F0F0F0;
   --input: #F0F0F0;
   --ring: #FF5C34;
+
+  --sage: #AEB8A0;
+  --color-sage: #AEB8A0;
 }
 
 @layer base {
