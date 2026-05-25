@@ -39,13 +39,20 @@ export function MealCard({
   return (
     <article className="space-y-3 rounded-[28px] bg-card p-3 pb-4">
       <div className="relative overflow-hidden rounded-2xl">
-        <img
-          src={image}
-          alt={title}
-          loading="lazy"
-          className="aspect-[16/10] w-full object-cover"
-        />
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent p-3.5">
+        <Link
+          to={id ? "/meal/$id" : "/"}
+          params={id ? { id } : undefined}
+          aria-label={`Open ${title}`}
+          className="block"
+        >
+          <img
+            src={image}
+            alt={title}
+            loading="lazy"
+            className="aspect-[16/10] w-full object-cover transition-transform active:scale-[0.99]"
+          />
+        </Link>
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent p-3.5">
           <div className="flex items-center gap-2.5">
             <img
               src={authorAvatar}
