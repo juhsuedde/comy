@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 
 type Reaction = { emoji: string; count: number };
 
 interface MealCardProps {
+  id?: string;
   image: string;
   title: string;
   authorName: string;
