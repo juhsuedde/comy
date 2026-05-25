@@ -14,6 +14,7 @@ interface MealCardProps {
 }
 
 export function MealCard({
+  id,
   image,
   title,
   authorName,
