@@ -160,7 +160,7 @@ function PostMeal() {
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Add a note, recipe, or vibe..."
             rows={3}
-            className="w-full resize-none bg-transparent text-base font-semibold text-foreground placeholder:text-foreground/30 focus:outline-none"
+            className="w-full resize-none bg-transparent text-base font-semibold text-foreground placeholder:text-[#AEB8A0] focus:outline-none"
           />
         </div>
 
