@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { BottomNav } from "@/components/BottomNav";
-import { FilterPills } from "@/components/FilterPills";
+import { FilterPills, type Filter } from "@/components/FilterPills";
 import avatarMe from "@/assets/avatar-me.jpg";
 import meal1 from "@/assets/meal-1.jpg";
 import meal2 from "@/assets/meal-2.jpg";
