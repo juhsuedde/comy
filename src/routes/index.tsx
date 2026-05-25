@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Bell } from "lucide-react";
+import { Logo } from "@/components/Logo";
 import { BottomNav } from "@/components/BottomNav";
 import { FilterPills } from "@/components/FilterPills";
 import { MealCard } from "@/components/MealCard";
