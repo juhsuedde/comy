@@ -28,7 +28,7 @@ export function FilterPills({ value, onChange }: Props) {
               onClick={() => set(f)}
               className={`rounded-full px-5 py-2.5 text-sm font-bold transition-all active:scale-95 ${
                 isActive
-                  ? "bg-primary text-primary-foreground shadow-[var(--shadow-glow)]"
+                  ? "bg-primary text-primary-foreground"
                   : "bg-muted text-foreground/70 hover:text-foreground"
               }`}
             >

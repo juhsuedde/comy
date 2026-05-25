@@ -34,11 +34,8 @@ export function MealCard({
   };
 
   return (
-    <article
-      className="space-y-3 rounded-[28px] bg-card p-3 pb-4"
-      style={{ boxShadow: "var(--shadow-card)" }}
-    >
-      <div className="relative overflow-hidden rounded-2xl bg-muted">
+    <article className="space-y-3 rounded-[28px] bg-card p-3 pb-4">
+      <div className="relative overflow-hidden rounded-2xl">
         <img
           src={image}
           alt={title}

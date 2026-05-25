@@ -82,8 +82,7 @@ function Feed() {
           <button
             type="button"
             aria-label="Notifications"
-            className="relative flex h-10 w-10 items-center justify-center rounded-full bg-card text-foreground transition-colors hover:bg-muted"
-            style={{ boxShadow: "var(--shadow-card)" }}
+            className="relative flex h-10 w-10 items-center justify-center rounded-full text-foreground transition-colors hover:bg-muted"
           >
             <Bell className="h-5 w-5" strokeWidth={2} />
             <span className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-primary" />

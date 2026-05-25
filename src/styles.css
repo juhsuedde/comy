@@ -38,42 +38,42 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --shadow-card: 0 2px 8px rgba(20, 14, 10, 0.04), 0 12px 28px -8px rgba(20, 14, 10, 0.06);
-  --shadow-nav: 0 -2px 16px -4px rgba(20, 14, 10, 0.06);
-  --shadow-glow: 0 8px 28px -6px color-mix(in oklab, var(--primary) 40%, transparent);
+  --shadow-card: none;
+  --shadow-nav: none;
+  --shadow-glow: none;
 }
 
 :root {
   --radius: 1.5rem; /* 24px */
 
-  /* Warm, cozy palette — friendly & approachable */
-  --background: oklch(0.985 0.005 80);          /* #FAFAF8 warm off-white */
-  --foreground: oklch(0.22 0.02 45);            /* warm near-black */
+  /* Clean paper palette — pure white with Orange Topaze + Sage accents */
+  --background: #FFFFFF;
+  --foreground: #1A1A1A;
 
-  --card: oklch(0.97 0.008 80);                 /* soft warm card tint */
-  --card-foreground: oklch(0.22 0.02 45);
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
 
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.02 45);
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1A1A;
 
-  --primary: oklch(0.68 0.18 40);               /* warm coral-orange */
-  --primary-foreground: oklch(0.99 0.005 80);
+  --primary: #FF5C34;
+  --primary-foreground: #FFFFFF;
 
-  --secondary: oklch(0.95 0.01 75);             /* warm light gray fill */
-  --secondary-foreground: oklch(0.28 0.02 45);
+  --secondary: #AEB8A0;
+  --secondary-foreground: #2D3A2A;
 
-  --muted: oklch(0.94 0.008 75);                /* warm gray for inactive pills */
-  --muted-foreground: oklch(0.52 0.015 55);
+  --muted: #AEB8A0;
+  --muted-foreground: #8A9680;
 
-  --accent: oklch(0.92 0.035 55);               /* soft warm highlight */
-  --accent-foreground: oklch(0.26 0.02 45);
+  --accent: #F5F5F0;
+  --accent-foreground: #1A1A1A;
 
   --destructive: oklch(0.6 0.22 25);
   --destructive-foreground: oklch(0.99 0 0);
 
-  --border: oklch(0.9 0.01 75);
-  --input: oklch(0.9 0.01 75);
-  --ring: oklch(0.68 0.18 40);
+  --border: #F0F0F0;
+  --input: #F0F0F0;
+  --ring: #FF5C34;
 }
 
 @layer base {
