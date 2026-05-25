@@ -59,11 +59,11 @@
   --primary: #FF5C34;
   --primary-foreground: #FFFFFF;
 
-  --secondary: #AEB8A0;
-  --secondary-foreground: #2D3A2A;
+  --secondary: #F5F5F3;
+  --secondary-foreground: #1A1A1A;
 
-  --muted: #AEB8A0;
-  --muted-foreground: #8A9680;
+  --muted: #EDEEE9;
+  --muted-foreground: #1A1A1A;
 
   --accent: #F5F5F0;
   --accent-foreground: #1A1A1A;
