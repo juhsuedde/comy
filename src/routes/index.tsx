@@ -1,41 +1,111 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Bell } from "lucide-react";
 import { BottomNav } from "@/components/BottomNav";
+import { FilterPills } from "@/components/FilterPills";
+import { MealCard } from "@/components/MealCard";
+import meal1 from "@/assets/meal-1.jpg";
+import meal2 from "@/assets/meal-2.jpg";
+import meal3 from "@/assets/meal-3.jpg";
+import avatarMe from "@/assets/avatar-me.jpg";
+import avatar1 from "@/assets/avatar-1.jpg";
+import avatar2 from "@/assets/avatar-2.jpg";
+import avatar3 from "@/assets/avatar-3.jpg";
 
 export const Route = createFileRoute("/")({
-  component: Index,
+  component: Feed,
   head: () => ({
     meta: [
-      { title: "COMY — Share what you eat" },
+      { title: "COMY — Feed" },
       {
         name: "description",
-        content: "COMY is a social food app where friends share what they eat every day.",
+        content: "See what your friends are eating today on COMY.",
       },
     ],
   }),
 });
 
-function Index() {
+const meals = [
+  {
+    image: meal1,
+    title: "Miojo com ovo e queijo",
+    authorName: "Lucas",
+    authorAvatar: avatar1,
+    timeAgo: "2h ago",
+    reactions: [
+      { emoji: "😋", count: 12 },
+      { emoji: "🤤", count: 5 },
+      { emoji: "🔥", count: 3 },
+      { emoji: "🥗", count: 1 },
+      { emoji: "💛", count: 8 },
+    ],
+  },
+  {
+    image: meal2,
+    title: "Salada com frango grelhado e abacate",
+    authorName: "Marina",
+    authorAvatar: avatar2,
+    timeAgo: "4h ago",
+    reactions: [
+      { emoji: "😋", count: 7 },
+      { emoji: "🤤", count: 2 },
+      { emoji: "🔥", count: 4 },
+      { emoji: "🥗", count: 15 },
+      { emoji: "💛", count: 6 },
+    ],
+  },
+  {
+    image: meal3,
+    title: "Hambúrguer caseiro com fritas",
+    authorName: "Pedro",
+    authorAvatar: avatar3,
+    timeAgo: "6h ago",
+    reactions: [
+      { emoji: "😋", count: 21 },
+      { emoji: "🤤", count: 14 },
+      { emoji: "🔥", count: 18 },
+      { emoji: "🥗", count: 0 },
+      { emoji: "💛", count: 9 },
+    ],
+  },
+];
+
+function Feed() {
   return (
     <div className="min-h-screen bg-background pb-32">
-      <header className="mx-auto max-w-md px-6 pt-12 pb-6">
-        <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
-          Design system preview
+      <header className="mx-auto max-w-md px-6 pt-10">
+        <div className="flex items-center justify-between">
+          <img
+            src={avatarMe}
+            alt="You"
+            className="h-10 w-10 rounded-full object-cover"
+          />
+          <button
+            type="button"
+            aria-label="Notifications"
+            className="relative flex h-10 w-10 items-center justify-center rounded-full bg-card text-foreground transition-colors hover:bg-muted"
+            style={{ boxShadow: "var(--shadow-card)" }}
+          >
+            <Bell className="h-5 w-5" strokeWidth={2} />
+            <span className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-primary" />
+          </button>
+        </div>
+
+        <h1 className="mt-6 text-4xl">
+          Hey, Sofia <span className="font-sans font-light">👋</span>
+        </h1>
+        <p className="mt-2 text-base font-light text-muted-foreground">
+          What's everyone eating today?
         </p>
-        <h1 className="mt-3 text-5xl">COMY</h1>
-        <p className="mt-3 text-base font-light text-muted-foreground">
-          A little place to share what you ate today.
-        </p>
+
+        <div className="mt-6">
+          <FilterPills />
+        </div>
       </header>
 
-      <section className="mx-auto max-w-md px-6">
-        <div
-          className="aspect-[4/5] rounded-3xl bg-card"
-          style={{ boxShadow: "var(--shadow-card)" }}
-        />
-        <div
-          className="mt-5 h-32 rounded-3xl bg-card"
-          style={{ boxShadow: "var(--shadow-card)" }}
-        />
+      <section className="mx-auto mt-8 max-w-md space-y-10 px-6">
+        {meals.map((m) => (
+          <MealCard key={m.title} {...m} />
+        ))}
       </section>
 
       <BottomNav />
