@@ -2,16 +2,7 @@ import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { BottomNav } from "@/components/BottomNav";
 import { FilterPills, type Filter } from "@/components/FilterPills";
-import avatarMe from "@/assets/avatar-me.jpg";
-import meal1 from "@/assets/meal-1.jpg";
-import meal2 from "@/assets/meal-2.jpg";
-import meal3 from "@/assets/meal-3.jpg";
-
-const gridImages = [
-  meal1, meal2, meal3,
-  meal2, meal3, meal1,
-  meal3, meal1, meal2,
-];
+import { CURRENT_USER, profileGrid } from "@/lib/mock-data";
 
 export const Route = createFileRoute("/profile")({
   component: Profile,
@@ -32,7 +23,7 @@ function Profile() {
         {/* Avatar + Name + Bio */}
         <div className="flex flex-col items-center text-center">
           <img
-            src={avatarMe}
+            src={CURRENT_USER.avatar_url!}
             alt="Sofia"
             className="h-24 w-24 rounded-full object-cover"
           />
@@ -65,7 +56,7 @@ function Profile() {
 
         {/* Photo Grid */}
         <div className="mt-6 grid grid-cols-3 gap-2">
-          {gridImages.map((img, i) => (
+          {profileGrid.map((img, i) => (
             <div key={i} className="aspect-square overflow-hidden rounded-2xl">
               <img
                 src={img}

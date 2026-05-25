@@ -7,13 +7,8 @@ import { FilterPills } from "@/components/FilterPills";
 import { MealCard } from "@/components/MealCard";
 import { MealCardSkeleton } from "@/components/MealCardSkeleton";
 import { FeedEmptyState } from "@/components/FeedEmptyState";
-import meal1 from "@/assets/meal-1.jpg";
-import meal2 from "@/assets/meal-2.jpg";
-import meal3 from "@/assets/meal-3.jpg";
-import avatarMe from "@/assets/avatar-me.jpg";
-import avatar1 from "@/assets/avatar-1.jpg";
-import avatar2 from "@/assets/avatar-2.jpg";
-import avatar3 from "@/assets/avatar-3.jpg";
+import { feedItems } from "@/lib/mock-data";
+import { useAuth } from "@/contexts/AuthContext";
 
 export const Route = createFileRoute("/")({
   component: Feed,
@@ -28,55 +23,10 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-const meals = [
-  {
-    id: "1",
-    image: meal1,
-    title: "Miojo com ovo e queijo",
-    authorName: "Lucas",
-    authorAvatar: avatar1,
-    timeAgo: "2h ago",
-    reactions: [
-      { emoji: "😋", count: 12 },
-      { emoji: "🤤", count: 5 },
-      { emoji: "🔥", count: 3 },
-      { emoji: "🥗", count: 1 },
-      { emoji: "💛", count: 8 },
-    ],
-  },
-  {
-    id: "2",
-    image: meal2,
-    title: "Salada com frango grelhado e abacate",
-    authorName: "Marina",
-    authorAvatar: avatar2,
-    timeAgo: "4h ago",
-    reactions: [
-      { emoji: "😋", count: 7 },
-      { emoji: "🤤", count: 2 },
-      { emoji: "🔥", count: 4 },
-      { emoji: "🥗", count: 15 },
-      { emoji: "💛", count: 6 },
-    ],
-  },
-  {
-    id: "3",
-    image: meal3,
-    title: "Hambúrguer caseiro com fritas",
-    authorName: "Pedro",
-    authorAvatar: avatar3,
-    timeAgo: "6h ago",
-    reactions: [
-      { emoji: "😋", count: 21 },
-      { emoji: "🤤", count: 14 },
-      { emoji: "🔥", count: 18 },
-      { emoji: "🥗", count: 0 },
-      { emoji: "💛", count: 9 },
-    ],
-  },
-];
+const meals = feedItems;
 
 function Feed() {
+  const { user } = useAuth();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const t = setTimeout(() => setLoading(false), 700);
@@ -92,7 +42,7 @@ function Feed() {
           <div className="flex flex-col">
             <Logo className="text-3xl" />
             <p className="mt-2 text-sm font-semibold text-muted-foreground">
-              Hey Sofia 👋 what&apos;s everyone eating today?
+              Hey {user?.username ?? "there"} 👋 what&apos;s everyone eating today?
             </p>
           </div>
           <div className="flex items-center gap-3">
@@ -105,7 +55,7 @@ function Feed() {
               <span className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-primary" />
             </button>
             <img
-              src={avatarMe}
+              src={user?.avatar_url ?? ""}
               alt="You"
               className="h-10 w-10 rounded-full object-cover"
             />

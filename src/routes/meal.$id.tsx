@@ -2,13 +2,7 @@ import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, Share2, Send, Sun, Salad, Moon, Cookie, CupSoda, Utensils } from "lucide-react";
 import { BottomNav } from "@/components/BottomNav";
-import meal1 from "@/assets/meal-1.jpg";
-import meal2 from "@/assets/meal-2.jpg";
-import meal3 from "@/assets/meal-3.jpg";
-import avatarMe from "@/assets/avatar-me.jpg";
-import avatar1 from "@/assets/avatar-1.jpg";
-import avatar2 from "@/assets/avatar-2.jpg";
-import avatar3 from "@/assets/avatar-3.jpg";
+import { CURRENT_USER, mealDetailItems } from "@/lib/mock-data";
 
 const categoryMap = {
   Breakfast: { Icon: Sun, bg: "#FFF8E1" },
@@ -21,18 +15,7 @@ const categoryMap = {
 
 type CategoryKey = keyof typeof categoryMap;
 
-type MealData = {
-  image: string;
-  title: string;
-  authorName: string;
-  authorAvatar: string;
-  timeAgo: string;
-  category: CategoryKey;
-  description?: string;
-  hashtags: string[];
-  reactions: { emoji: string; count: number }[];
-  comments: { name: string; avatar: string; text: string; timeAgo: string }[];
-};
+const meals = mealDetailItems;
 
 const meals: Record<string, MealData> = {
   "1": {
@@ -270,7 +253,7 @@ function MealDetail() {
       >
         <div className="mx-auto flex max-w-md items-center gap-2.5 rounded-full bg-secondary px-3 py-2">
           <img
-            src={avatarMe}
+            src={CURRENT_USER.avatar_url!}
             alt="You"
             className="h-8 w-8 rounded-full object-cover"
           />

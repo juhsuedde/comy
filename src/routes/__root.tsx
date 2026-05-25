@@ -8,6 +8,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 import appCss from "../styles.css?url";
 
@@ -115,9 +116,11 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div key={pathname} className="animate-fade-in">
-        <Outlet />
-      </div>
+      <AuthProvider>
+        <div key={pathname} className="animate-fade-in">
+          <Outlet />
+        </div>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }
