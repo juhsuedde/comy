@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Utensils, Sun, Leaf, Moon, Cookie, CupSoda } from "lucide-react";
+import { Utensils, Sun, Salad, Moon, Cookie, CupSoda } from "lucide-react";
 
 const filters = [
   { label: "All", Icon: Utensils, bg: "#FFFFFF", border: "#EDEEE9" },
