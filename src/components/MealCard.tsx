@@ -34,18 +34,18 @@ export function MealCard({
   };
 
   return (
-    <article className="space-y-3">
-      <div
-        className="relative overflow-hidden rounded-3xl bg-muted"
-        style={{ boxShadow: "var(--shadow-card)" }}
-      >
+    <article
+      className="space-y-3 rounded-[28px] bg-card p-3 pb-4"
+      style={{ boxShadow: "var(--shadow-card)" }}
+    >
+      <div className="relative overflow-hidden rounded-2xl bg-muted">
         <img
           src={image}
           alt={title}
           loading="lazy"
-          className="aspect-[4/3] w-full object-cover"
+          className="aspect-[16/10] w-full object-cover"
         />
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent p-4">
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent p-3.5">
           <div className="flex items-center gap-2.5">
             <img
               src={authorAvatar}
@@ -53,15 +53,17 @@ export function MealCard({
               className="h-8 w-8 rounded-full border-2 border-white/90 object-cover"
             />
             <div className="flex items-baseline gap-2 text-white">
-              <span className="text-sm font-semibold">{authorName}</span>
-              <span className="text-xs font-light text-white/75">· {timeAgo}</span>
+              <span className="text-sm font-bold">{authorName}</span>
+              <span className="text-xs font-medium text-white/70">
+                · {timeAgo}
+              </span>
             </div>
           </div>
         </div>
       </div>
 
       <div className="px-1">
-        <h3 className="text-xl leading-tight">{title}</h3>
+        <h3 className="text-lg font-extrabold leading-snug">{title}</h3>
       </div>
 
       <div className="flex flex-wrap gap-2 px-1">
@@ -72,14 +74,14 @@ export function MealCard({
               key={r.emoji}
               type="button"
               onClick={() => toggle(r.emoji)}
-              className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm transition-all active:scale-95 ${
+              className={`flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm transition-all active:scale-95 ${
                 isActive
-                  ? "border-primary bg-primary/10 text-foreground"
-                  : "border-border bg-card text-muted-foreground hover:border-foreground/20"
+                  ? "bg-primary/15 text-primary"
+                  : "bg-secondary text-muted-foreground hover:bg-secondary/70"
               }`}
             >
-              <span className="text-base leading-none">{r.emoji}</span>
-              <span className="font-medium tabular-nums">{r.count}</span>
+              <span className="text-lg leading-none">{r.emoji}</span>
+              <span className="font-bold tabular-nums">{r.count}</span>
             </button>
           );
         })}

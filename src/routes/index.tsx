@@ -90,11 +90,11 @@ function Feed() {
           </button>
         </div>
 
-        <h1 className="mt-6 text-4xl">
-          Hey, Sofia <span className="font-sans font-light">👋</span>
+        <h1 className="mt-6 text-3xl font-extrabold">
+          Hey, Sofia 👋
         </h1>
-        <p className="mt-2 text-base font-light text-muted-foreground">
-          What's everyone eating today?
+        <p className="mt-2 text-base font-medium text-muted-foreground">
+          What&apos;s everyone eating today?
         </p>
 
         <div className="mt-6">
@@ -102,7 +102,7 @@ function Feed() {
         </div>
       </header>
 
-      <section className="mx-auto mt-8 max-w-md space-y-10 px-6">
+      <section className="mx-auto mt-8 max-w-md space-y-8 px-6">
         {meals.map((m) => (
           <MealCard key={m.title} {...m} />
         ))}
