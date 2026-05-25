@@ -1,12 +1,19 @@
 import { Home, Plus, Compass, User } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
-const items = [
+type NavItem = {
+  to: string;
+  label: string;
+  icon: typeof Home;
+  primary?: boolean;
+};
+
+const items: NavItem[] = [
   { to: "/", label: "Feed", icon: Home },
   { to: "/post", label: "Post", icon: Plus, primary: true },
   { to: "/explore", label: "Explore", icon: Compass },
   { to: "/profile", label: "Profile", icon: User },
-] as const;
+];
 
 export function BottomNav() {
   return (
