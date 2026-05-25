@@ -138,21 +138,24 @@ function PostMeal() {
         {/* Category */}
         <div className="mt-5">
           <div className="-mx-6 overflow-x-auto px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="flex w-max gap-2.5">
-              {categories.map((c) => {
-                const isActive = c === category;
+            <div className="flex w-max gap-2">
+              {categoryConfig.map((c) => {
+                const isActive = c.label === category;
+                const Icon = c.Icon;
                 return (
                   <button
-                    key={c}
+                    key={c.label}
                     type="button"
-                    onClick={() => setCategory(isActive ? null : c)}
-                    className={`rounded-full px-5 py-2.5 text-sm font-bold transition-all active:scale-95 ${
-                      isActive
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-muted text-foreground/70 hover:text-foreground"
-                    }`}
+                    onClick={() => setCategory(isActive ? null : c.label)}
+                    style={{
+                      background: isActive ? "var(--primary)" : c.bg,
+                      color: isActive ? "var(--primary-foreground)" : "var(--foreground)",
+                      borderColor: isActive ? "transparent" : "#EDEEE9",
+                    }}
+                    className="flex min-w-[60px] flex-col items-center justify-center gap-0.5 rounded-2xl border px-2.5 py-2 text-xs font-bold transition-all active:scale-95"
                   >
-                    {c}
+                    <Icon className="h-4 w-4" />
+                    <span>{c.label}</span>
                   </button>
                 );
               })}
