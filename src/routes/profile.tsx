@@ -45,13 +45,13 @@ function Profile() {
           <div className="mt-5 flex items-center gap-8">
             <div className="flex flex-col items-center">
               <span className="text-lg font-extrabold">128</span>
-              <span className="text-xs font-bold text-muted-foreground">
+              <span className="text-xs font-bold" style={{ color: "#AEB8A0" }}>
                 Following
               </span>
             </div>
             <div className="flex flex-col items-center">
               <span className="text-lg font-extrabold">342</span>
-              <span className="text-xs font-bold text-muted-foreground">
+              <span className="text-xs font-bold" style={{ color: "#AEB8A0" }}>
                 Followers
               </span>
             </div>
