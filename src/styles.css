@@ -4,19 +4,19 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* COMY — fonts: Fraunces (display) + Manrope (body) */
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,900&family=Manrope:wght@300;400;500;600;700&display=swap");
+/* COMY — friendly rounded font: Nunito for everything */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap");
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 6px);
+  --radius-sm: calc(var(--radius) - 8px);
   --radius-md: calc(var(--radius) - 4px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 6px);
+  --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 12px);
-  --radius-3xl: calc(var(--radius) + 18px);
+  --radius-3xl: calc(var(--radius) + 20px);
 
-  --font-display: "Fraunces", ui-serif, Georgia, serif;
-  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -38,42 +38,42 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --shadow-card: 0 1px 2px rgba(20, 14, 10, 0.04), 0 8px 24px -8px rgba(20, 14, 10, 0.08);
-  --shadow-nav: 0 -2px 16px -4px rgba(20, 14, 10, 0.08);
-  --shadow-glow: 0 8px 28px -6px color-mix(in oklab, var(--primary) 45%, transparent);
+  --shadow-card: 0 2px 8px rgba(20, 14, 10, 0.04), 0 12px 28px -8px rgba(20, 14, 10, 0.06);
+  --shadow-nav: 0 -2px 16px -4px rgba(20, 14, 10, 0.06);
+  --shadow-glow: 0 8px 28px -6px color-mix(in oklab, var(--primary) 40%, transparent);
 }
 
 :root {
-  --radius: 1.25rem; /* 20px */
+  --radius: 1.5rem; /* 24px */
 
-  /* Warm, appetizing palette inspired by Orange Topaze */
-  --background: oklch(0.985 0.005 80);          /* #FAFAF8 */
-  --foreground: oklch(0.18 0.02 40);            /* deep warm near-black */
+  /* Warm, cozy palette — friendly & approachable */
+  --background: oklch(0.985 0.005 80);          /* #FAFAF8 warm off-white */
+  --foreground: oklch(0.22 0.02 45);            /* warm near-black */
 
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.02 40);
+  --card: oklch(0.97 0.008 80);                 /* soft warm card tint */
+  --card-foreground: oklch(0.22 0.02 45);
 
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.02 40);
+  --popover-foreground: oklch(0.22 0.02 45);
 
-  --primary: oklch(0.7 0.19 38);                /* warm coral / topaze */
+  --primary: oklch(0.68 0.18 40);               /* warm coral-orange */
   --primary-foreground: oklch(0.99 0.005 80);
 
-  --secondary: oklch(0.96 0.012 70);
-  --secondary-foreground: oklch(0.22 0.02 40);
+  --secondary: oklch(0.95 0.01 75);             /* warm light gray fill */
+  --secondary-foreground: oklch(0.28 0.02 45);
 
-  --muted: oklch(0.955 0.008 75);
-  --muted-foreground: oklch(0.5 0.02 50);
+  --muted: oklch(0.94 0.008 75);                /* warm gray for inactive pills */
+  --muted-foreground: oklch(0.52 0.015 55);
 
-  --accent: oklch(0.94 0.04 60);
-  --accent-foreground: oklch(0.22 0.04 40);
+  --accent: oklch(0.92 0.035 55);               /* soft warm highlight */
+  --accent-foreground: oklch(0.26 0.02 45);
 
   --destructive: oklch(0.6 0.22 25);
   --destructive-foreground: oklch(0.99 0 0);
 
-  --border: oklch(0.92 0.008 75);
-  --input: oklch(0.92 0.008 75);
-  --ring: oklch(0.7 0.19 38);
+  --border: oklch(0.9 0.01 75);
+  --input: oklch(0.9 0.01 75);
+  --ring: oklch(0.68 0.18 40);
 }
 
 @layer base {
@@ -85,15 +85,15 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    font-weight: 300;
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
   h1, h2, h3, h4 {
-    font-family: var(--font-display);
-    font-weight: 900;
-    letter-spacing: -0.02em;
+    font-family: var(--font-sans);
+    font-weight: 800;
+    letter-spacing: -0.01em;
     color: var(--color-foreground);
   }
 }

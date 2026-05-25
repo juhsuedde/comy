@@ -18,7 +18,7 @@ export function FilterPills({ value, onChange }: Props) {
 
   return (
     <div className="-mx-6 overflow-x-auto px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-      <div className="flex w-max gap-2">
+      <div className="flex w-max gap-2.5">
         {filters.map((f) => {
           const isActive = f === active;
           return (
@@ -26,10 +26,10 @@ export function FilterPills({ value, onChange }: Props) {
               key={f}
               type="button"
               onClick={() => set(f)}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-all active:scale-95 ${
+              className={`rounded-full px-5 py-2.5 text-sm font-bold transition-all active:scale-95 ${
                 isActive
                   ? "bg-primary text-primary-foreground shadow-[var(--shadow-glow)]"
-                  : "bg-card text-muted-foreground border border-border hover:text-foreground"
+                  : "bg-muted text-foreground/70 hover:text-foreground"
               }`}
             >
               {f}
