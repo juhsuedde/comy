@@ -9,12 +9,19 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SplashRouteImport } from './routes/splash'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as PostRouteImport } from './routes/post'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MealIdRouteImport } from './routes/meal.$id'
 
+const SplashRoute = SplashRouteImport.update({
+  id: '/splash',
+  path: '/splash',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
@@ -23,6 +30,11 @@ const ProfileRoute = ProfileRouteImport.update({
 const PostRoute = PostRouteImport.update({
   id: '/post',
   path: '/post',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExploreRoute = ExploreRouteImport.update({
@@ -44,43 +56,80 @@ const MealIdRoute = MealIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/explore': typeof ExploreRoute
+  '/login': typeof LoginRoute
   '/post': typeof PostRoute
   '/profile': typeof ProfileRoute
+  '/splash': typeof SplashRoute
   '/meal/$id': typeof MealIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/explore': typeof ExploreRoute
+  '/login': typeof LoginRoute
   '/post': typeof PostRoute
   '/profile': typeof ProfileRoute
+  '/splash': typeof SplashRoute
   '/meal/$id': typeof MealIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/explore': typeof ExploreRoute
+  '/login': typeof LoginRoute
   '/post': typeof PostRoute
   '/profile': typeof ProfileRoute
+  '/splash': typeof SplashRoute
   '/meal/$id': typeof MealIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/explore' | '/post' | '/profile' | '/meal/$id'
+  fullPaths:
+    | '/'
+    | '/explore'
+    | '/login'
+    | '/post'
+    | '/profile'
+    | '/splash'
+    | '/meal/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/explore' | '/post' | '/profile' | '/meal/$id'
-  id: '__root__' | '/' | '/explore' | '/post' | '/profile' | '/meal/$id'
+  to:
+    | '/'
+    | '/explore'
+    | '/login'
+    | '/post'
+    | '/profile'
+    | '/splash'
+    | '/meal/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/explore'
+    | '/login'
+    | '/post'
+    | '/profile'
+    | '/splash'
+    | '/meal/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ExploreRoute: typeof ExploreRoute
+  LoginRoute: typeof LoginRoute
   PostRoute: typeof PostRoute
   ProfileRoute: typeof ProfileRoute
+  SplashRoute: typeof SplashRoute
   MealIdRoute: typeof MealIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/splash': {
+      id: '/splash'
+      path: '/splash'
+      fullPath: '/splash'
+      preLoaderRoute: typeof SplashRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/profile': {
       id: '/profile'
       path: '/profile'
@@ -93,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/post'
       fullPath: '/post'
       preLoaderRoute: typeof PostRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/explore': {
@@ -122,8 +178,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ExploreRoute: ExploreRoute,
+  LoginRoute: LoginRoute,
   PostRoute: PostRoute,
   ProfileRoute: ProfileRoute,
+  SplashRoute: SplashRoute,
   MealIdRoute: MealIdRoute,
 }
 export const routeTree = rootRouteImport

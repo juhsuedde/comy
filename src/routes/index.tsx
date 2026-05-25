@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Bell } from "lucide-react";
+import { Logo } from "@/components/Logo";
 import { BottomNav } from "@/components/BottomNav";
 import { FilterPills } from "@/components/FilterPills";
 import { MealCard } from "@/components/MealCard";
@@ -87,28 +88,29 @@ function Feed() {
   return (
     <div className="min-h-screen bg-background pb-32">
       <header className="mx-auto max-w-md px-5 pt-8 sm:px-6 sm:pt-10">
-        <div className="flex items-center justify-between">
-          <img
-            src={avatarMe}
-            alt="You"
-            className="h-10 w-10 rounded-full object-cover"
-          />
-          <button
-            type="button"
-            aria-label="Notifications"
-            className="relative flex h-10 w-10 items-center justify-center rounded-full text-foreground transition-colors hover:bg-muted"
-          >
-            <Bell className="h-5 w-5" strokeWidth={2} />
-            <span className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-primary" />
-          </button>
+        <div className="flex items-start justify-between">
+          <div className="flex flex-col">
+            <Logo className="text-3xl" />
+            <p className="mt-2 text-sm font-semibold text-muted-foreground">
+              Hey Sofia 👋 what&apos;s everyone eating today?
+            </p>
+          </div>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              aria-label="Notifications"
+              className="relative flex h-10 w-10 items-center justify-center rounded-full text-foreground transition-colors hover:bg-muted"
+            >
+              <Bell className="h-5 w-5" strokeWidth={2} />
+              <span className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-primary" />
+            </button>
+            <img
+              src={avatarMe}
+              alt="You"
+              className="h-10 w-10 rounded-full object-cover"
+            />
+          </div>
         </div>
-
-        <h1 className="mt-6 text-3xl font-extrabold">
-          Hey, Sofia 👋
-        </h1>
-        <p className="mt-2 text-base font-medium text-muted-foreground">
-          What&apos;s everyone eating today?
-        </p>
 
         <div className="mt-6">
           <FilterPills />
