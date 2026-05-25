@@ -20,8 +20,7 @@ export function BottomNav() {
 
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 z-50 border-t border-border/50 bg-background/90 backdrop-blur-xl"
-      style={{ boxShadow: "var(--shadow-nav)" }}
+      className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-background"
     >
       <ul className="mx-auto flex max-w-md items-center justify-around px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-2">
         {items.map(({ to, label, icon: Icon, primary }) => {
@@ -37,7 +36,6 @@ export function BottomNav() {
                 {primary ? (
                   <span
                     className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-primary-foreground transition-transform group-hover:scale-105 group-active:scale-95"
-                    style={{ boxShadow: "var(--shadow-glow)" }}
                   >
                     <Icon className="h-6 w-6" strokeWidth={2.5} />
                   </span>
