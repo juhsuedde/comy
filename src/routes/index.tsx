@@ -1,8 +1,11 @@
+import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Bell } from "lucide-react";
 import { BottomNav } from "@/components/BottomNav";
 import { FilterPills } from "@/components/FilterPills";
 import { MealCard } from "@/components/MealCard";
+import { MealCardSkeleton } from "@/components/MealCardSkeleton";
+import { FeedEmptyState } from "@/components/FeedEmptyState";
 import meal1 from "@/assets/meal-1.jpg";
 import meal2 from "@/assets/meal-2.jpg";
 import meal3 from "@/assets/meal-3.jpg";
@@ -73,9 +76,17 @@ const meals = [
 ];
 
 function Feed() {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const t = setTimeout(() => setLoading(false), 700);
+    return () => clearTimeout(t);
+  }, []);
+
+  const isEmpty = !loading && meals.length === 0;
+
   return (
     <div className="min-h-screen bg-background pb-32">
-      <header className="mx-auto max-w-md px-6 pt-10">
+      <header className="mx-auto max-w-md px-5 pt-8 sm:px-6 sm:pt-10">
         <div className="flex items-center justify-between">
           <img
             src={avatarMe}
@@ -104,10 +115,17 @@ function Feed() {
         </div>
       </header>
 
-      <section className="mx-auto mt-8 max-w-md space-y-8 px-6">
-        {meals.map((m) => (
-          <MealCard key={m.title} {...m} />
-        ))}
+      <section className="mx-auto mt-8 max-w-md space-y-8 px-5 sm:px-6">
+        {loading ? (
+          <>
+            <MealCardSkeleton />
+            <MealCardSkeleton />
+          </>
+        ) : isEmpty ? (
+          <FeedEmptyState />
+        ) : (
+          meals.map((m) => <MealCard key={m.id} {...m} />)
+        )}
       </section>
 
       <BottomNav />
