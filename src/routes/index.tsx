@@ -1,8 +1,11 @@
+import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Bell } from "lucide-react";
 import { BottomNav } from "@/components/BottomNav";
 import { FilterPills } from "@/components/FilterPills";
 import { MealCard } from "@/components/MealCard";
+import { MealCardSkeleton } from "@/components/MealCardSkeleton";
+import { FeedEmptyState } from "@/components/FeedEmptyState";
 import meal1 from "@/assets/meal-1.jpg";
 import meal2 from "@/assets/meal-2.jpg";
 import meal3 from "@/assets/meal-3.jpg";
