@@ -26,6 +26,7 @@ export const Route = createFileRoute("/")({
 
 const meals = [
   {
+    id: "1",
     image: meal1,
     title: "Miojo com ovo e queijo",
     authorName: "Lucas",
@@ -40,6 +41,7 @@ const meals = [
     ],
   },
   {
+    id: "2",
     image: meal2,
     title: "Salada com frango grelhado e abacate",
     authorName: "Marina",
@@ -54,6 +56,7 @@ const meals = [
     ],
   },
   {
+    id: "3",
     image: meal3,
     title: "Hambúrguer caseiro com fritas",
     authorName: "Pedro",
