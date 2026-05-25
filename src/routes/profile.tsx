@@ -24,7 +24,7 @@ export const Route = createFileRoute("/profile")({
 });
 
 function Profile() {
-  const [filter, setFilter] = useState<string>("All");
+  const [filter, setFilter] = useState<Filter>("All");
 
   return (
     <div className="min-h-screen bg-background pb-32">
