@@ -1,10 +1,17 @@
 import { useState, useRef, useEffect } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { Camera, X } from "lucide-react";
+import { Camera, X, Sun, Salad, Moon, Cookie, CircleEllipsis } from "lucide-react";
 import { BottomNav } from "@/components/BottomNav";
 
-const categories = ["Breakfast", "Lunch", "Dinner", "Snack", "Other"] as const;
-type Category = (typeof categories)[number];
+const categoryConfig = [
+  { label: "Breakfast", Icon: Sun, bg: "#FFF8E1" },
+  { label: "Lunch", Icon: Salad, bg: "#F0F4EF" },
+  { label: "Dinner", Icon: Moon, bg: "#F3F0FA" },
+  { label: "Snack", Icon: Cookie, bg: "#FFF1EC" },
+  { label: "Other", Icon: CircleEllipsis, bg: "#F5F5F3" },
+] as const;
+
+type Category = (typeof categoryConfig)[number]["label"];
 
 const tagOptions = [
   { label: "Homemade", emoji: "🏠" },
@@ -131,21 +138,24 @@ function PostMeal() {
         {/* Category */}
         <div className="mt-5">
           <div className="-mx-6 overflow-x-auto px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="flex w-max gap-2.5">
-              {categories.map((c) => {
-                const isActive = c === category;
+            <div className="flex w-max gap-2">
+              {categoryConfig.map((c) => {
+                const isActive = c.label === category;
+                const Icon = c.Icon;
                 return (
                   <button
-                    key={c}
+                    key={c.label}
                     type="button"
-                    onClick={() => setCategory(isActive ? null : c)}
-                    className={`rounded-full px-5 py-2.5 text-sm font-bold transition-all active:scale-95 ${
-                      isActive
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-muted text-foreground/70 hover:text-foreground"
-                    }`}
+                    onClick={() => setCategory(isActive ? null : c.label)}
+                    style={{
+                      background: isActive ? "var(--primary)" : c.bg,
+                      color: isActive ? "var(--primary-foreground)" : "var(--foreground)",
+                      borderColor: isActive ? "transparent" : "#EDEEE9",
+                    }}
+                    className="flex min-w-[60px] flex-col items-center justify-center gap-0.5 rounded-2xl border px-2.5 py-2 text-xs font-bold transition-all active:scale-95"
                   >
-                    {c}
+                    <Icon className="h-4 w-4" />
+                    <span>{c.label}</span>
                   </button>
                 );
               })}
