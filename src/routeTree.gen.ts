@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as PostRouteImport } from './routes/post'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MealIdRouteImport } from './routes/meal.$id'
 
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
@@ -28,35 +29,44 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MealIdRoute = MealIdRouteImport.update({
+  id: '/meal/$id',
+  path: '/meal/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/post': typeof PostRoute
   '/profile': typeof ProfileRoute
+  '/meal/$id': typeof MealIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/post': typeof PostRoute
   '/profile': typeof ProfileRoute
+  '/meal/$id': typeof MealIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/post': typeof PostRoute
   '/profile': typeof ProfileRoute
+  '/meal/$id': typeof MealIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/post' | '/profile'
+  fullPaths: '/' | '/post' | '/profile' | '/meal/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/post' | '/profile'
-  id: '__root__' | '/' | '/post' | '/profile'
+  to: '/' | '/post' | '/profile' | '/meal/$id'
+  id: '__root__' | '/' | '/post' | '/profile' | '/meal/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PostRoute: typeof PostRoute
   ProfileRoute: typeof ProfileRoute
+  MealIdRoute: typeof MealIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +92,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/meal/$id': {
+      id: '/meal/$id'
+      path: '/meal/$id'
+      fullPath: '/meal/$id'
+      preLoaderRoute: typeof MealIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PostRoute: PostRoute,
   ProfileRoute: ProfileRoute,
+  MealIdRoute: MealIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
