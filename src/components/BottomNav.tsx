@@ -1,4 +1,4 @@
-import { Home, Plus, Compass, User } from "lucide-react";
+import { Home, Plus, UserPlus, User } from "lucide-react";
 import { Link, useLocation } from "@tanstack/react-router";
 
 type NavItem = {
@@ -11,7 +11,7 @@ type NavItem = {
 const items: NavItem[] = [
   { to: "/", label: "Feed", icon: Home },
   { to: "/post", label: "Post", icon: Plus, primary: true },
-  { to: "/explore", label: "Explore", icon: Compass },
+  { to: "/friends", label: "Friends", icon: UserPlus },
   { to: "/profile", label: "Profile", icon: User },
 ];
 
