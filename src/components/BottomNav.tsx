@@ -11,7 +11,7 @@ type NavItem = {
 const items: NavItem[] = [
   { to: "/", label: "Feed", icon: Home },
   { to: "/post", label: "Post", icon: Plus, primary: true },
-  { to: "/friends", label: "Friends", icon: UserPlus },
+  { to: "/friends", label: "Friends", icon: ScanFace },
   { to: "/profile", label: "Profile", icon: User },
 ];
 
