@@ -31,32 +31,30 @@ export function Logo({ variant = "primary", className }: LogoProps) {
 }
 
 function PlateO({ color }: { color: string }) {
-  // Sized in em units so it scales with the surrounding font-size.
   return (
     <svg
-      viewBox="0 0 32 32"
+      viewBox="0 0 28 28"
       aria-hidden="true"
       focusable="false"
       style={{
-        width: "0.78em",
-        height: "0.78em",
-        marginLeft: "0.02em",
-        marginRight: "0.02em",
-        transform: "translateY(0.04em)",
+        width: "0.75em",
+        height: "0.75em",
+        marginLeft: "0.04em",
+        marginRight: "0.04em",
+        display: "inline-block",
       }}
       fill="none"
     >
-      {/* steam curl */}
-      <path
-        d="M16 2 C 13.5 4.5, 18.5 6, 16 8.5"
+      {/* outer ring — like a clean letter O */}
+      <circle
+        cx="14"
+        cy="14"
+        r="9.5"
         stroke={color}
-        strokeWidth="2.4"
-        strokeLinecap="round"
+        strokeWidth="2.5"
       />
-      {/* plate ring */}
-      <circle cx="16" cy="20" r="10" stroke={color} strokeWidth="4" />
-      {/* plate center */}
-      <circle cx="16" cy="20" r="3.2" fill={color} />
+      {/* inner dot — the plate hint */}
+      <circle cx="14" cy="14" r="3" fill={color} />
     </svg>
   );
 }
