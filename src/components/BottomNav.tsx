@@ -1,4 +1,4 @@
-import { Home, Plus, UserPlus, User } from "lucide-react";
+import { Home, Plus, ScanFace, User } from "lucide-react";
 import { Link, useLocation } from "@tanstack/react-router";
 
 type NavItem = {
