@@ -7,8 +7,8 @@ type LogoProps = {
 };
 
 /**
- * COMY wordmark — lowercase "comy" where the "o" is replaced by a small
- * plate-with-steam mark. Size is driven by font-size (use Tailwind text-*).
+ * COMY wordmark — lowercase "comy" where the "o" is a clean ring with a
+ * central dot, hinting at a plate viewed from above.
  */
 export function Logo({ variant = "primary", className }: LogoProps) {
   const color = variant === "white" ? "#FFFFFF" : "#FF5C34";
