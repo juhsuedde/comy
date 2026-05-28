@@ -9,12 +9,12 @@
   <br/>
   <br/>
 
-  <h1>COMY</h1>
+  <h1>comy</h1>
 
   <h3><em>eat together</em></h3>
 
   <p>
-    <strong>COMY</strong> (de <em>come together</em>) é um <strong>diário alimentar social</strong> mobile-first.<br/>
+    <strong>COMY</strong> é um <strong>diário alimentar social</strong> mobile-first.<br/>
     Compartilhe suas refeições, reaja com emojis, comente, siga amigos e descubra<br/>
     o que a galera está comendo — tudo numa timeline bonita e gostosa de usar.
   </p>
