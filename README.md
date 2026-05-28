@@ -9,11 +9,7 @@
   <br/>
   <br/>
 
-  <!-- COMY wordmark — c + plate-o + my, inline as typed SVG -->
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='80' viewBox='0 0 320 80'%3E%3Cstyle%3Etext%7Bfont-family:Nunito,ui-sans-serif,system-ui,sans-serif;font-size:56px;font-weight:800%7D%3C/style%3E%3Ctext x='0' y='58' fill='%23ffffff'%3Ec%3C/text%3E%3Csvg x='50' y='0' width='40' height='80' viewBox='0 0 28 28'%3E%3Ccircle cx='14' cy='14' r='9.5' stroke='%23ffffff' stroke-width='2.5' fill='none'/%3E%3Ccircle cx='14' cy='14' r='3' fill='%23ffffff'/%3E%3C/svg%3E%3Ctext x='95' y='58' fill='%23ffffff'%3Emy%3C/text%3E%3C/svg%3E">
-    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='80' viewBox='0 0 320 80'%3E%3Cstyle%3Etext%7Bfont-family:Nunito,ui-sans-serif,system-ui,sans-serif;font-size:56px;font-weight:800%7D%3C/style%3E%3Ctext x='0' y='58' fill='%23FF5C34'%3Ec%3C/text%3E%3Csvg x='50' y='0' width='40' height='80' viewBox='0 0 28 28'%3E%3Ccircle cx='14' cy='14' r='9.5' stroke='%23FF5C34' stroke-width='2.5' fill='none'/%3E%3Ccircle cx='14' cy='14' r='3' fill='%23FF5C34'/%3E%3C/svg%3E%3Ctext x='95' y='58' fill='%23FF5C34'%3Emy%3C/text%3E%3C/svg%3E" alt="COMY" width="320">
-  </picture>
+  <h1>COMY</h1>
 
   <h3><em>eat together</em></h3>
 
