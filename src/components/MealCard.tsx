@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Link } from "@tanstack/react-router";
 
 type Reaction = { emoji: string; count: number };
