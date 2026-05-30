@@ -35,17 +35,32 @@ function MealDetail() {
 
   const [reactions, setReactions] = useState(meal.reactions);
   const [active, setActive] = useState<string | null>(null);
+  const [bouncingEmoji, setBouncingEmoji] = useState<string | null>(null);
+  const [pulsingEmoji, setPulsingEmoji] = useState<string | null>(null);
 
-  const toggle = (emoji: string) => {
+  const toggle = useCallback((emoji: string) => {
+    const wasActive = active === emoji;
     setReactions((rs) =>
       rs.map((r) =>
         r.emoji === emoji
-          ? { ...r, count: r.count + (active === emoji ? -1 : 1) }
+          ? { ...r, count: r.count + (wasActive ? -1 : 1) }
           : r,
       ),
     );
     setActive((a) => (a === emoji ? null : emoji));
-  };
+
+    setBouncingEmoji(emoji);
+    setTimeout(() => {
+      setBouncingEmoji((current) => (current === emoji ? null : current));
+    }, 200);
+
+    if (!wasActive) {
+      setPulsingEmoji(emoji);
+      setTimeout(() => {
+        setPulsingEmoji((current) => (current === emoji ? null : current));
+      }, 400);
+    }
+  }, [active]);
 
   return (
     <div className="min-h-screen bg-background pb-40">
