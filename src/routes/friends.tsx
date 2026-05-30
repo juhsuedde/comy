@@ -43,6 +43,7 @@ const searchResults: Suggestion[] = [
 function Friends() {
   const [query, setQuery] = useState("");
   const [following, setFollowing] = useState<Record<string, boolean>>({});
+  const [showShareMenu, setShowShareMenu] = useState(false);
   const hasFriends = Object.values(following).some(Boolean);
 
   const toggleFollow = (name: string) =>
@@ -59,46 +60,50 @@ function Friends() {
     } else {
       await navigator.clipboard?.writeText(url);
     }
+    setShowShareMenu(false);
   };
 
   return (
     <div className="min-h-screen bg-background pb-32">
       <div className="mx-auto max-w-md px-5 pt-8 sm:px-6 sm:pt-10">
         {/* HEADER */}
-        <header>
-          <h1 className="text-3xl font-extrabold">Find Friends</h1>
-          <p className="mt-2 text-sm font-semibold" style={{ color: "#AEB8A0" }}>
-            See what your people are eating
-          </p>
-        </header>
-
-        {/* INVITE SECTION */}
-        <section
-          className="mt-6 rounded-3xl p-5"
-          style={{ background: "#FFF1EC" }}
-        >
-          <h2 className="text-base font-extrabold">Invite friends to COMY</h2>
-          <p className="mt-1 text-sm font-medium text-muted-foreground">
-            Your feed gets better with every friend you add
-          </p>
-          <div className="mt-4 flex gap-2">
-            <button
-              type="button"
-              onClick={onShareLink}
-              className="flex flex-1 items-center justify-center gap-2 rounded-full bg-primary px-4 py-3 text-sm font-bold text-primary-foreground transition-opacity hover:opacity-90"
-            >
-              <Share2 className="h-4 w-4" strokeWidth={2.5} />
-              Share link
-            </button>
-            <button
-              type="button"
-              className="flex flex-1 items-center justify-center gap-2 rounded-full border-2 border-foreground bg-transparent px-4 py-3 text-sm font-bold text-foreground transition-colors hover:bg-foreground hover:text-background"
-            >
-              <QrCode className="h-4 w-4" strokeWidth={2.5} />
-              Share QR code
-            </button>
+        <header className="flex items-start justify-between">
+          <div>
+            <h1 className="text-3xl font-extrabold">Find Friends</h1>
+            <p className="mt-2 text-sm font-semibold" style={{ color: "#AEB8A0" }}>
+              See what your people are eating
+            </p>
           </div>
-        </section>
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => setShowShareMenu((s) => !s)}
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-muted transition-opacity hover:opacity-80"
+              aria-label="Share invite"
+            >
+              <Share2 className="h-5 w-5" strokeWidth={2.5} style={{ color: "#FF5C34" }} />
+            </button>
+            {showShareMenu && (
+              <div className="absolute right-0 top-12 z-50 w-48 overflow-hidden rounded-2xl border border-border bg-background shadow-lg">
+                <button
+                  type="button"
+                  onClick={onShareLink}
+                  className="flex w-full items-center gap-3 px-4 py-3 text-sm font-bold transition-colors hover:bg-muted"
+                >
+                  <Share2 className="h-4 w-4" strokeWidth={2.5} />
+                  Share link
+                </button>
+                <button
+                  type="button"
+                  className="flex w-full items-center gap-3 px-4 py-3 text-sm font-bold transition-colors hover:bg-muted"
+                >
+                  <QrCode className="h-4 w-4" strokeWidth={2.5} />
+                  Share QR code
+                </button>
+              </div>
+            )}
+          </div>
+        </header>
 
         {/* SEARCH SECTION */}
         <section className="mt-8">
