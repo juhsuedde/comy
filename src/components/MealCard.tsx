@@ -12,6 +12,7 @@ interface MealCardProps {
   authorAvatar: string;
   timeAgo: string;
   reactions: Reaction[];
+  category?: string;
 }
 
 export function MealCard({
