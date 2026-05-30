@@ -5,11 +5,11 @@ import { BottomNav } from "@/components/BottomNav";
 import { CURRENT_USER, mealDetailItems } from "@/lib/mock-data";
 
 const categoryMap = {
-  Breakfast: { Icon: Sun, bg: "#FFF8E1" },
-  Lunch: { Icon: Salad, bg: "#F0F4EF" },
+  Breakfast: { Icon: Sun, bg: "#F7FAD0" },
+  Lunch: { Icon: Salad, bg: "#EDFBF4" },
   Dinner: { Icon: Moon, bg: "#F3F0FA" },
   Snack: { Icon: Cookie, bg: "#FFF1EC" },
-  Drink: { Icon: CupSoda, bg: "#E0F2FE" },
+  Drink: { Icon: CupSoda, bg: "#D7EFFF" },
   Other: { Icon: Utensils, bg: "#F5F5F3" },
 } as const;
 
