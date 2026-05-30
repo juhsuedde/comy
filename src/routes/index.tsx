@@ -25,6 +25,12 @@ export const Route = createFileRoute("/")({
 
 const meals = feedItems;
 
+const categoryMap: Record<string, string> = {
+  "1": "Snack",
+  "2": "Lunch",
+  "3": "Dinner",
+};
+
 function Feed() {
   const { user } = useAuth();
   const [loading, setLoading] = useState(true);
@@ -76,7 +82,7 @@ function Feed() {
         ) : isEmpty ? (
           <FeedEmptyState />
         ) : (
-          meals.map((m) => <MealCard key={m.id} {...m} />)
+          meals.map((m) => <MealCard key={m.id} {...m} category={categoryMap[m.id]} />)
         )}
       </section>
 
