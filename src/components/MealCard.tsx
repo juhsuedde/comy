@@ -79,6 +79,15 @@ export function MealCard({
             className="aspect-[16/10] w-full object-cover transition-transform active:scale-[0.99]"
           />
         </Link>
+        {cat && (
+          <div
+            className="absolute left-3 top-3 flex h-[26px] items-center gap-1 rounded-full px-[10px] backdrop-blur"
+            style={{ backgroundColor: "rgba(255,255,255,0.85)" }}
+          >
+            <cat.Icon className="h-3 w-3" style={{ color: cat.color }} />
+            <span className="text-[11px] font-bold text-[#1A1A1A]">{cat.label}</span>
+          </div>
+        )}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent p-3.5">
           <div className="flex items-center gap-2.5">
             <img
