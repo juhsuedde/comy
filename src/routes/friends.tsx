@@ -133,7 +133,7 @@ function Friends() {
         </section>
 
         {/* SUGGESTIONS SECTION */}
-        <section className="mt-8 rounded-3xl p-5" style={{ backgroundColor: "#FFF8F6" }}>
+        <section className="mt-8 rounded-3xl p-5" style={{ backgroundColor: "#FAF4F5" }}>
           <h2 className="text-base font-extrabold">People you may know</h2>
           <p className="mt-1 text-sm font-semibold" style={{ color: "#AEB8A0" }}>
             Based on your contacts

@@ -4,8 +4,8 @@ import { Camera, X, Sun, Salad, Moon, Cookie, CircleEllipsis } from "lucide-reac
 import { BottomNav } from "@/components/BottomNav";
 
 const categoryConfig = [
-  { label: "Breakfast", Icon: Sun, bg: "#FFF8E1" },
-  { label: "Lunch", Icon: Salad, bg: "#F0F4EF" },
+  { label: "Breakfast", Icon: Sun, bg: "#F7FAD0" },
+  { label: "Lunch", Icon: Salad, bg: "#EDFBF4" },
   { label: "Dinner", Icon: Moon, bg: "#F3F0FA" },
   { label: "Snack", Icon: Cookie, bg: "#FFF1EC" },
   { label: "Other", Icon: CircleEllipsis, bg: "#F5F5F3" },
