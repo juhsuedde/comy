@@ -81,7 +81,7 @@ export function MealCard({
         </Link>
         {cat && (
           <div
-            className="absolute left-3 top-3 flex h-[26px] items-center gap-1 rounded-full px-[10px] backdrop-blur"
+            className="absolute right-3 top-3 flex h-[26px] items-center gap-1 rounded-full px-[10px] backdrop-blur"
             style={{ backgroundColor: "rgba(255,255,255,0.85)" }}
           >
             <cat.Icon className="h-3 w-3" style={{ color: cat.color }} />
