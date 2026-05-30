@@ -118,6 +118,16 @@
   50% { transform: scale(1.02); }
 }
 
+@keyframes shimmer {
+  0% { background-position: -420px 0; }
+  100% { background-position: 420px 0; }
+}
+
+@keyframes chew {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.55); }
+}
+
 .animate-emoji-bounce {
   display: inline-block;
   animation: emoji-bounce 200ms ease-out;
@@ -130,6 +140,22 @@
 .animate-gentle-pulse {
   animation: gentle-pulse 2s ease-in-out infinite;
 }
+
+.skeleton-shimmer {
+  background-color: color-mix(in srgb, #2A1F1B 6%, transparent);
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, #FF5C34 14%, transparent) 50%,
+    transparent 100%
+  );
+  background-size: 420px 100%;
+  background-repeat: no-repeat;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+.animate-chew { animation: chew 420ms ease-in-out infinite; transform-origin: center bottom; }
+
 
 @layer base {
   * {
