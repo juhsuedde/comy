@@ -153,10 +153,10 @@ function MealDetail() {
                 type="button"
                 onClick={() => toggle(r.emoji)}
                 className={`flex flex-col items-center gap-1 rounded-2xl px-4 py-2.5 transition-all active:scale-95 ${
-                  isActive ? "bg-primary/15 text-primary" : "bg-secondary text-foreground hover:bg-secondary/70"
+                  isActive ? `bg-primary/15 text-primary ${pulsingEmoji === r.emoji ? "animate-bg-pulse" : ""}` : "bg-secondary text-foreground hover:bg-secondary/70"
                 }`}
               >
-                <span className="text-2xl leading-none">{r.emoji}</span>
+                <span className={`text-2xl leading-none ${bouncingEmoji === r.emoji ? "animate-emoji-bounce" : ""}`}>{r.emoji}</span>
                 <span className="text-xs font-bold tabular-nums">{r.count}</span>
               </button>
             );
