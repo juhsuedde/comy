@@ -16,11 +16,11 @@ interface MealCardProps {
 }
 
 const CATEGORY_MAP: Record<string, { Icon: typeof Sun; color: string; label: string }> = {
-  breakfast: { Icon: Sun, color: "#F59E0B", label: "Breakfast" },
-  lunch: { Icon: Salad, color: "#10B981", label: "Lunch" },
+  breakfast: { Icon: Sun, color: "#E9F056", label: "Breakfast" },
+  lunch: { Icon: Salad, color: "#2DCE89", label: "Lunch" },
   dinner: { Icon: Moon, color: "#8B5CF6", label: "Dinner" },
   snack: { Icon: Cookie, color: "#FF5C34", label: "Snack" },
-  drink: { Icon: CupSoda, color: "#6B7280", label: "Drink" },
+  drink: { Icon: CupSoda, color: "#AEB8A0", label: "Drink" },
 };
 
 export function MealCard({
@@ -85,7 +85,7 @@ export function MealCard({
             style={{ backgroundColor: "rgba(255,255,255,0.85)" }}
           >
             <cat.Icon className="h-3 w-3" style={{ color: cat.color }} />
-            <span className="text-[11px] font-bold text-[#1A1A1A]">{cat.label}</span>
+            <span className="text-[11px] font-bold text-[#351E28]">{cat.label}</span>
           </div>
         )}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent p-3.5">
