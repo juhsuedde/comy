@@ -25,6 +25,12 @@ export const Route = createFileRoute("/")({
 
 const meals = feedItems;
 
+const categoryMap: Record<string, string> = {
+  "1": "Snack",
+  "2": "Lunch",
+  "3": "Dinner",
+};
+
 function Feed() {
   const { user } = useAuth();
   const [loading, setLoading] = useState(true);
