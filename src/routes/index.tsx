@@ -82,7 +82,7 @@ function Feed() {
         ) : isEmpty ? (
           <FeedEmptyState />
         ) : (
-          meals.map((m) => <MealCard key={m.id} {...m} />)
+          meals.map((m) => <MealCard key={m.id} {...m} category={categoryMap[m.id]} />)
         )}
       </section>
 
