@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Link } from "@tanstack/react-router";
 
 type Reaction = { emoji: string; count: number };
@@ -24,17 +24,32 @@ export function MealCard({
 }: MealCardProps) {
   const [reactions, setReactions] = useState(initial);
   const [active, setActive] = useState<string | null>(null);
+  const [bouncingEmoji, setBouncingEmoji] = useState<string | null>(null);
+  const [pulsingEmoji, setPulsingEmoji] = useState<string | null>(null);
 
-  const toggle = (emoji: string) => {
+  const toggle = useCallback((emoji: string) => {
+    const wasActive = active === emoji;
     setReactions((rs) =>
       rs.map((r) =>
         r.emoji === emoji
-          ? { ...r, count: r.count + (active === emoji ? -1 : 1) }
+          ? { ...r, count: r.count + (wasActive ? -1 : 1) }
           : r,
       ),
     );
     setActive((a) => (a === emoji ? null : emoji));
-  };
+
+    setBouncingEmoji(emoji);
+    setTimeout(() => {
+      setBouncingEmoji((current) => (current === emoji ? null : current));
+    }, 200);
+
+    if (!wasActive) {
+      setPulsingEmoji(emoji);
+      setTimeout(() => {
+        setPulsingEmoji((current) => (current === emoji ? null : current));
+      }, 400);
+    }
+  }, [active]);
 
   return (
     <article className="space-y-3 rounded-[28px] bg-card p-3 pb-4">
@@ -83,11 +98,11 @@ export function MealCard({
               onClick={() => toggle(r.emoji)}
               className={`flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm transition-all active:scale-95 ${
                 isActive
-                  ? "bg-primary/15 text-primary"
+                  ? `bg-primary/15 text-primary ${pulsingEmoji === r.emoji ? "animate-bg-pulse" : ""}`
                   : "bg-secondary text-muted-foreground hover:bg-secondary/70"
               }`}
             >
-              <span className="text-lg leading-none">{r.emoji}</span>
+              <span className={`text-lg leading-none ${bouncingEmoji === r.emoji ? "animate-emoji-bounce" : ""}`}>{r.emoji}</span>
               <span className="font-bold tabular-nums">{r.count}</span>
             </button>
           );

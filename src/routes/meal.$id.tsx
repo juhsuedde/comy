@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, Share2, Send, Sun, Salad, Moon, Cookie, CupSoda, Utensils } from "lucide-react";
 import { BottomNav } from "@/components/BottomNav";
@@ -35,17 +35,32 @@ function MealDetail() {
 
   const [reactions, setReactions] = useState(meal.reactions);
   const [active, setActive] = useState<string | null>(null);
+  const [bouncingEmoji, setBouncingEmoji] = useState<string | null>(null);
+  const [pulsingEmoji, setPulsingEmoji] = useState<string | null>(null);
 
-  const toggle = (emoji: string) => {
+  const toggle = useCallback((emoji: string) => {
+    const wasActive = active === emoji;
     setReactions((rs) =>
       rs.map((r) =>
         r.emoji === emoji
-          ? { ...r, count: r.count + (active === emoji ? -1 : 1) }
+          ? { ...r, count: r.count + (wasActive ? -1 : 1) }
           : r,
       ),
     );
     setActive((a) => (a === emoji ? null : emoji));
-  };
+
+    setBouncingEmoji(emoji);
+    setTimeout(() => {
+      setBouncingEmoji((current) => (current === emoji ? null : current));
+    }, 200);
+
+    if (!wasActive) {
+      setPulsingEmoji(emoji);
+      setTimeout(() => {
+        setPulsingEmoji((current) => (current === emoji ? null : current));
+      }, 400);
+    }
+  }, [active]);
 
   return (
     <div className="min-h-screen bg-background pb-40">
@@ -138,10 +153,10 @@ function MealDetail() {
                 type="button"
                 onClick={() => toggle(r.emoji)}
                 className={`flex flex-col items-center gap-1 rounded-2xl px-4 py-2.5 transition-all active:scale-95 ${
-                  isActive ? "bg-primary/15 text-primary" : "bg-secondary text-foreground hover:bg-secondary/70"
+                  isActive ? `bg-primary/15 text-primary ${pulsingEmoji === r.emoji ? "animate-bg-pulse" : ""}` : "bg-secondary text-foreground hover:bg-secondary/70"
                 }`}
               >
-                <span className="text-2xl leading-none">{r.emoji}</span>
+                <span className={`text-2xl leading-none ${bouncingEmoji === r.emoji ? "animate-emoji-bounce" : ""}`}>{r.emoji}</span>
                 <span className="text-xs font-bold tabular-nums">{r.count}</span>
               </button>
             );

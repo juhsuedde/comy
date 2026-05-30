@@ -197,13 +197,26 @@ function PostMeal() {
         </div>
 
         {/* Post Button */}
-        <button
-          type="button"
-          onClick={handlePost}
-          className="mt-8 flex w-full items-center justify-center rounded-2xl bg-primary py-4 text-base font-extrabold text-primary-foreground transition-transform active:scale-[0.98]"
-        >
-          Post it
-        </button>
+        {(() => {
+          const hasPhoto = !!photo;
+          const hasTitle = title.trim().length > 0;
+          const isReady = hasPhoto || hasTitle;
+          const isComplete = hasPhoto && hasTitle;
+          return (
+            <button
+              type="button"
+              onClick={isReady ? handlePost : undefined}
+              disabled={!isReady}
+              className={`mt-8 flex w-full items-center justify-center rounded-2xl py-4 text-base font-extrabold transition-transform active:scale-[0.98] ${
+                isReady
+                  ? "bg-primary text-primary-foreground cursor-pointer"
+                  : "bg-muted text-foreground/40 opacity-50 cursor-not-allowed"
+              } ${isComplete ? "animate-gentle-pulse" : ""}`}
+            >
+              Post it
+            </button>
+          );
+        })()}
       </div>
 
       <BottomNav />
