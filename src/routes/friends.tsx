@@ -64,12 +64,12 @@ function Friends() {
   };
 
   return (
-    <div className="min-h-screen bg-background pb-32">
+    <div className="min-h-screen bg-[#FFFBF7] pb-32">
       <div className="mx-auto max-w-md px-5 pt-8 sm:px-6 sm:pt-10">
         {/* HEADER */}
         <header className="flex items-start justify-between">
           <div>
-            <h1 className="text-3xl font-extrabold">Find Friends</h1>
+            <h1 className="text-4xl font-black">Find Friends</h1>
             <p className="mt-2 text-sm font-semibold" style={{ color: "#AEB8A0" }}>
               See what your people are eating
             </p>
@@ -118,7 +118,7 @@ function Friends() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search @username..."
-              className="h-12 w-full rounded-full bg-muted pl-11 pr-4 text-sm font-semibold outline-none focus:ring-2 focus:ring-primary/30"
+              className="h-12 w-full rounded-full card-elevated pl-11 pr-4 text-sm font-semibold outline-none focus:ring-2 focus:ring-primary/30"
             />
           </div>
 
@@ -138,7 +138,7 @@ function Friends() {
         </section>
 
         {/* SUGGESTIONS SECTION */}
-        <section className="mt-8 rounded-3xl p-5" style={{ backgroundColor: "#FAF4F5" }}>
+        <section className="card-dinner mt-8 rounded-3xl p-5">
           <h2 className="text-base font-extrabold">People you may know</h2>
           <p className="mt-1 text-sm font-semibold" style={{ color: "#AEB8A0" }}>
             Based on your contacts
@@ -161,12 +161,12 @@ function Friends() {
             <div className="text-5xl" aria-hidden>
               🍽️
             </div>
-            <h3 className="mt-3 text-lg font-extrabold">Your feed is hungry</h3>
+            <h3 className="mt-3 text-lg font-extrabold">Ninguém por aqui ainda...</h3>
             <p
               className="mt-1 text-sm font-semibold"
               style={{ color: "#AEB8A0" }}
             >
-              Add friends to start seeing what they eat
+              Que tal convidar aquela pessoa que sempre posta comida no Instagram?
             </p>
           </section>
         )}

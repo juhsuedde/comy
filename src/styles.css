@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /* COMY — friendly rounded font: Nunito for everything */
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap");
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 8px);
@@ -84,6 +84,21 @@
 
   --sage: #AEB8A0;
   --color-sage: #AEB8A0;
+
+  /* Mood-based color tokens */
+  --paper: #FFFBF7;
+  --ink: #2A1F1B;
+
+  --breakfast: #E9F056;
+  --lunch: #FF5C34;
+  --dinner: #351E2B;
+  --snack: #AEB8A0;
+  --drink: #D7EFFF;
+
+  --love: #FF5C34;
+  --success: #AEB8A0;
+  --info: #D7EFFF;
+  --warning: #E9F056;
 }
 
 @keyframes emoji-bounce {
@@ -136,4 +151,52 @@
     letter-spacing: -0.01em;
     color: var(--color-foreground);
   }
+}
+
+.text-display {
+  font-family: "Nunito", sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.text-body {
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+/* Flat evolved — stacked paper */
+.card-elevated {
+  background: #ffffff;
+  border: 1px solid rgba(42, 31, 27, 0.06);
+  box-shadow:
+    0 0 0 1px rgba(42, 31, 27, 0.04),
+    0 2px 8px rgba(42, 31, 27, 0.04);
+}
+
+.card-breakfast {
+  background: linear-gradient(135deg, #fffbf7 0%, color-mix(in srgb, var(--breakfast) 10%, transparent) 100%);
+  border: 1px solid color-mix(in srgb, var(--breakfast) 20%, transparent);
+}
+
+.card-lunch {
+  background: linear-gradient(135deg, #fffbf7 0%, color-mix(in srgb, var(--lunch) 10%, transparent) 100%);
+  border: 1px solid color-mix(in srgb, var(--lunch) 20%, transparent);
+}
+
+.card-dinner {
+  background: linear-gradient(135deg, #fffbf7 0%, color-mix(in srgb, var(--dinner) 10%, transparent) 100%);
+  border: 1px solid color-mix(in srgb, var(--dinner) 20%, transparent);
+}
+
+.card-snack {
+  background: linear-gradient(135deg, #fffbf7 0%, color-mix(in srgb, var(--snack) 20%, transparent) 100%);
+  border: 1px solid color-mix(in srgb, var(--snack) 30%, transparent);
+}
+
+.card-drink {
+  background: linear-gradient(135deg, #fffbf7 0%, color-mix(in srgb, var(--drink) 20%, transparent) 100%);
+  border: 1px solid color-mix(in srgb, var(--drink) 30%, transparent);
 }

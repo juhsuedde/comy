@@ -1,5 +1,7 @@
 import { Home, Plus, ScanFace, User } from "lucide-react";
 import { Link, useLocation } from "@tanstack/react-router";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 type NavItem = {
   to: string;
@@ -43,13 +45,29 @@ export function BottomNav() {
                     <Icon className="h-6 w-6" strokeWidth={2.5} />
                   </span>
                 ) : (
-                  <span
-                    className={`flex h-11 w-11 items-center justify-center rounded-full transition-colors ${
-                      isActive ? "bg-white/15 text-white" : "text-white/70 group-hover:text-white"
-                    }`}
+                  <motion.div
+                    layout
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                    className={cn(
+                      "flex items-center gap-1 rounded-full transition-colors",
+                      isActive
+                        ? "bg-[#FF5C34] text-white px-4 py-2"
+                        : "text-white/60 group-hover:text-white px-3 py-2"
+                    )}
                   >
-                    <Icon className="h-5 w-5" strokeWidth={2} />
-                  </span>
+                    <Icon className="h-5 w-5" strokeWidth={isActive ? 2.5 : 2} />
+                    {isActive && (
+                      <motion.span
+                        layout
+                        initial={{ opacity: 0, width: 0 }}
+                        animate={{ opacity: 1, width: "auto" }}
+                        exit={{ opacity: 0, width: 0 }}
+                        className="text-xs font-bold whitespace-nowrap overflow-hidden"
+                      >
+                        {label}
+                      </motion.span>
+                    )}
+                  </motion.div>
                 )}
               </Link>
             </li>

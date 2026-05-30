@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, Share2, Send, Sun, Salad, Moon, Cookie, CupSoda, Utensils } from "lucide-react";
+import { motion } from "framer-motion";
 import { BottomNav } from "@/components/BottomNav";
 import { CURRENT_USER, mealDetailItems } from "@/lib/mock-data";
 
@@ -63,7 +64,7 @@ function MealDetail() {
   }, [active]);
 
   return (
-    <div className="min-h-screen bg-background pb-40">
+    <div className="min-h-screen bg-[#FFFBF7] pb-40">
       {/* Photo */}
       <div className="relative">
         <img
@@ -115,7 +116,7 @@ function MealDetail() {
         </div>
 
         {/* Title */}
-        <h1 className="mt-3 text-3xl font-extrabold leading-tight">
+        <h1 className="mt-3 text-3xl font-black tracking-tight leading-tight">
           {meal.title}
         </h1>
 
@@ -148,17 +149,19 @@ function MealDetail() {
           {reactions.map((r) => {
             const isActive = active === r.emoji;
             return (
-              <button
+              <motion.button
                 key={r.emoji}
                 type="button"
                 onClick={() => toggle(r.emoji)}
-                className={`flex flex-col items-center gap-1 rounded-2xl px-4 py-2.5 transition-all active:scale-95 ${
+                whileTap={{ scale: 1.3, rotate: [0, -8, 8, 0] }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                className={`flex flex-col items-center gap-1 rounded-2xl px-4 py-2.5 transition-all ${
                   isActive ? `bg-primary/15 text-primary ${pulsingEmoji === r.emoji ? "animate-bg-pulse" : ""}` : "bg-secondary text-foreground hover:bg-secondary/70"
                 }`}
               >
                 <span className={`text-2xl leading-none ${bouncingEmoji === r.emoji ? "animate-emoji-bounce" : ""}`}>{r.emoji}</span>
                 <span className="text-xs font-bold tabular-nums">{r.count}</span>
-              </button>
+              </motion.button>
             );
           })}
         </div>
@@ -193,10 +196,10 @@ function MealDetail() {
 
       {/* Fixed comment input */}
       <div
-        className="fixed inset-x-0 z-40 bg-background px-4 pt-3"
+        className="fixed inset-x-0 z-40 bg-[#FFFBF7] px-4 pt-3"
         style={{ bottom: "calc(max(1rem, env(safe-area-inset-bottom)) + 76px)" }}
       >
-        <div className="mx-auto flex max-w-md items-center gap-2.5 rounded-full bg-secondary px-3 py-2">
+        <div className="mx-auto flex max-w-md items-center gap-2.5 rounded-full card-elevated px-3 py-2">
           <img
             src={CURRENT_USER.avatar_url!}
             alt="You"

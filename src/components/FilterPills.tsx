@@ -1,13 +1,21 @@
 import { useState } from "react";
 import { Utensils, Sun, Salad, Moon, Cookie, CupSoda } from "lucide-react";
 
+const filterColors: Record<string, string> = {
+  Breakfast: "#E9F056",
+  Lunch: "#FF5C34",
+  Dinner: "#351E2B",
+  Snack: "#AEB8A0",
+  Drink: "#D7EFFF",
+};
+
 const filters = [
-  { label: "All", Icon: Utensils, bg: "#FFFFFF", border: "#EDEEE9" },
-  { label: "Breakfast", Icon: Sun, bg: "#F7FAD0", border: "transparent" },
-  { label: "Lunch", Icon: Salad, bg: "#EDFBF4", border: "transparent" },
-  { label: "Dinner", Icon: Moon, bg: "#F3F0FA", border: "transparent" },
-  { label: "Snack", Icon: Cookie, bg: "#FFF1EC", border: "transparent" },
-  { label: "Drink", Icon: CupSoda, bg: "#D7EFFF", border: "transparent" },
+  { label: "All", Icon: Utensils, bg: "#FFFBF7", border: "#EDEEE9" },
+  { label: "Breakfast", Icon: Sun, bg: undefined, border: "transparent" },
+  { label: "Lunch", Icon: Salad, bg: undefined, border: "transparent" },
+  { label: "Dinner", Icon: Moon, bg: undefined, border: "transparent" },
+  { label: "Snack", Icon: Cookie, bg: undefined, border: "transparent" },
+  { label: "Drink", Icon: CupSoda, bg: undefined, border: "transparent" },
 ] as const;
 
 export type Filter = (typeof filters)[number]["label"];
@@ -37,7 +45,7 @@ export function FilterPills({ value, onChange }: Props) {
               type="button"
               onClick={() => set(f.label)}
               style={{
-                background: isActive ? "var(--primary)" : f.bg,
+                background: isActive ? "var(--primary)" : (f.bg ?? (filterColors[f.label] ? `${filterColors[f.label]}20` : "#F5F5F3")),
                 color: isActive ? "var(--primary-foreground)" : "var(--foreground)",
                 borderColor: isActive ? "transparent" : f.border,
               }}

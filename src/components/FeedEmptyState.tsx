@@ -23,9 +23,9 @@ export function FeedEmptyState() {
       <div className="flex h-24 w-24 items-center justify-center rounded-full bg-secondary text-5xl">
         🍽️
       </div>
-      <h2 className="mt-6 text-xl font-extrabold">Your feed is hungry</h2>
+      <h2 className="mt-6 text-xl font-extrabold">Sua timeline tá com fome</h2>
       <p className="mt-2 max-w-[260px] text-sm font-medium text-muted-foreground">
-        Invite friends to start seeing what they're eating today.
+        Segue alguém pra ver o que tá rolando na cozinha!
       </p>
       <button
         type="button"

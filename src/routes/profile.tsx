@@ -18,7 +18,7 @@ function Profile() {
   const [filter, setFilter] = useState<Filter>("All");
 
   return (
-    <div className="min-h-screen bg-background pb-32">
+    <div className="min-h-screen bg-[#FFFBF7] pb-32">
       <div className="mx-auto max-w-md px-6 pt-10">
         {/* Avatar + Name + Bio */}
         <div className="flex flex-col items-center text-center">
@@ -28,21 +28,21 @@ function Profile() {
             className="h-24 w-24 rounded-full object-cover"
           />
           <h1 className="mt-4 text-2xl font-extrabold">Sofia</h1>
-          <p className="mt-1.5 max-w-[260px] text-sm font-semibold leading-relaxed text-muted-foreground">
+          <p className="mt-1.5 max-w-[260px] text-sm font-semibold leading-relaxed text-[#351E28]/70">
             I eat everything and post most of it. Based in São Paulo.
           </p>
 
           {/* Counters */}
           <div className="mt-5 flex items-center gap-8">
             <div className="flex flex-col items-center">
-              <span className="text-lg font-extrabold">128</span>
-              <span className="text-xs font-bold" style={{ color: "#AEB8A0" }}>
+              <span className="font-black text-2xl" style={{ color: "#351E28" }}>128</span>
+              <span className="text-xs font-bold" style={{ color: "#351E28" }}>
                 Following
               </span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-lg font-extrabold">342</span>
-              <span className="text-xs font-bold" style={{ color: "#AEB8A0" }}>
+              <span className="font-black text-2xl" style={{ color: "#351E28" }}>342</span>
+              <span className="text-xs font-bold" style={{ color: "#351E28" }}>
                 Followers
               </span>
             </div>

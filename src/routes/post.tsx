@@ -1,14 +1,15 @@
 import { useState, useRef, useEffect } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Camera, X, Sun, Salad, Moon, Cookie, CircleEllipsis } from "lucide-react";
+import { toast } from "sonner";
 import { BottomNav } from "@/components/BottomNav";
 
 const categoryConfig = [
-  { label: "Breakfast", Icon: Sun, bg: "#F7FAD0" },
-  { label: "Lunch", Icon: Salad, bg: "#EDFBF4" },
-  { label: "Dinner", Icon: Moon, bg: "#F3F0FA" },
-  { label: "Snack", Icon: Cookie, bg: "#FFF1EC" },
-  { label: "Other", Icon: CircleEllipsis, bg: "#F5F5F3" },
+  { label: "Breakfast", Icon: Sun, bg: "#F7FAD0", previewBg: "bg-[#E9F056]/10" },
+  { label: "Lunch", Icon: Salad, bg: "#EDFBF4", previewBg: "bg-[#FF5C34]/10" },
+  { label: "Dinner", Icon: Moon, bg: "#F3F0FA", previewBg: "bg-[#351E2B]/10" },
+  { label: "Snack", Icon: Cookie, bg: "#FFF1EC", previewBg: "bg-[#AEB8A0]/20" },
+  { label: "Other", Icon: CircleEllipsis, bg: "#F5F5F3", previewBg: "bg-[#D7EFFF]/20" },
 ] as const;
 
 type Category = (typeof categoryConfig)[number]["label"];
@@ -72,11 +73,12 @@ function PostMeal() {
   };
 
   const handlePost = () => {
+    toast.success("Bon appétit! Sua refeição tá no ar.");
     navigate({ to: "/" });
   };
 
   return (
-    <div className="min-h-screen bg-background pb-32">
+    <div className="min-h-screen bg-[#FFFBF7] pb-32">
       <div className="mx-auto max-w-md px-6 pt-10">
         {/* Photo Upload Area */}
         <button
@@ -85,7 +87,7 @@ function PostMeal() {
           className={`relative flex h-[42vh] min-h-[200px] w-full flex-col items-center justify-center overflow-hidden transition-colors focus:outline-none ${
             photo
               ? "rounded-3xl"
-              : "rounded-3xl border-2 border-dashed border-foreground/15 bg-muted"
+              : `rounded-3xl border-2 border-dashed border-foreground/15 ${category ? categoryConfig.find(c => c.label === category)?.previewBg ?? "bg-muted" : "bg-muted"}`
           }`}
         >
           {photo ? (
