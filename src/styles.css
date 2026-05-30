@@ -47,27 +47,27 @@
 :root {
   --radius: 1.5rem; /* 24px */
 
-  /* Clean paper palette — pure white with Orange Topaze + Sage accents */
+  /* Pinterest 2026 palette — Cassis + Orange Topaze + Wasabi + Cool Blue + Vert Sauge */
   --background: #FFFFFF;
-  --foreground: #1A1A1A;
+  --foreground: #351E28;
 
   --card: #FFFFFF;
-  --card-foreground: #1A1A1A;
+  --card-foreground: #351E28;
 
   --popover: #FFFFFF;
-  --popover-foreground: #1A1A1A;
+  --popover-foreground: #351E28;
 
   --primary: #FF5C34;
   --primary-foreground: #FFFFFF;
 
   --secondary: #F5F5F3;
-  --secondary-foreground: #1A1A1A;
+  --secondary-foreground: #351E28;
 
   --muted: #EDEEE9;
-  --muted-foreground: #1A1A1A;
+  --muted-foreground: color-mix(in srgb, #351E28 60%, transparent);
 
   --accent: #F5F5F0;
-  --accent-foreground: #1A1A1A;
+  --accent-foreground: #351E28;
 
   --destructive: oklch(0.6 0.22 25);
   --destructive-foreground: oklch(0.99 0 0);
@@ -75,6 +75,12 @@
   --border: #F0F0F0;
   --input: #F0F0F0;
   --ring: #FF5C34;
+
+  --cassis: #351E28;
+  --wasabi: #E9F056;
+  --cool-blue: #D7EFFF;
+  --vert-sauge: #AEB8A0;
+  --orange-topaze: #FF5C34;
 
   --sage: #AEB8A0;
   --color-sage: #AEB8A0;

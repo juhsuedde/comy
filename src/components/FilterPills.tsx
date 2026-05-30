@@ -3,11 +3,11 @@ import { Utensils, Sun, Salad, Moon, Cookie, CupSoda } from "lucide-react";
 
 const filters = [
   { label: "All", Icon: Utensils, bg: "#FFFFFF", border: "#EDEEE9" },
-  { label: "Breakfast", Icon: Sun, bg: "#FFF8E1", border: "transparent" },
-  { label: "Lunch", Icon: Salad, bg: "#F0F4EF", border: "transparent" },
+  { label: "Breakfast", Icon: Sun, bg: "#F7FAD0", border: "transparent" },
+  { label: "Lunch", Icon: Salad, bg: "#EDFBF4", border: "transparent" },
   { label: "Dinner", Icon: Moon, bg: "#F3F0FA", border: "transparent" },
   { label: "Snack", Icon: Cookie, bg: "#FFF1EC", border: "transparent" },
-  { label: "Drink", Icon: CupSoda, bg: "#E0F2FE", border: "transparent" },
+  { label: "Drink", Icon: CupSoda, bg: "#D7EFFF", border: "transparent" },
 ] as const;
 
 export type Filter = (typeof filters)[number]["label"];

@@ -26,7 +26,7 @@ export function BottomNav() {
       <ul
         className="pointer-events-auto flex items-center gap-2 px-3 py-2"
         style={{
-          background: "#1A1A1A",
+          background: "#351E28",
           borderRadius: "40px",
           boxShadow: "0 10px 30px -10px rgba(0,0,0,0.35), 0 4px 12px -4px rgba(0,0,0,0.2)",
         }}
