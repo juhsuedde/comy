@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { Link } from "@tanstack/react-router";
+import { Sun, Salad, Moon, Cookie, CupSoda, Utensils } from "lucide-react";
 
 type Reaction = { emoji: string; count: number };
 
