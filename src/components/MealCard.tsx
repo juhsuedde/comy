@@ -15,6 +15,14 @@ interface MealCardProps {
   category?: string;
 }
 
+const CATEGORY_MAP: Record<string, { Icon: typeof Sun; color: string; label: string }> = {
+  breakfast: { Icon: Sun, color: "#F59E0B", label: "Breakfast" },
+  lunch: { Icon: Salad, color: "#10B981", label: "Lunch" },
+  dinner: { Icon: Moon, color: "#8B5CF6", label: "Dinner" },
+  snack: { Icon: Cookie, color: "#FF5C34", label: "Snack" },
+  drink: { Icon: CupSoda, color: "#6B7280", label: "Drink" },
+};
+
 export function MealCard({
   id,
   image,
@@ -23,7 +31,9 @@ export function MealCard({
   authorAvatar,
   timeAgo,
   reactions: initial,
+  category,
 }: MealCardProps) {
+  const cat = category ? CATEGORY_MAP[category.toLowerCase()] : undefined;
   const [reactions, setReactions] = useState(initial);
   const [active, setActive] = useState<string | null>(null);
   const [bouncingEmoji, setBouncingEmoji] = useState<string | null>(null);
