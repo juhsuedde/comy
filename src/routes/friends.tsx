@@ -133,7 +133,7 @@ function Friends() {
         </section>
 
         {/* SUGGESTIONS SECTION */}
-        <section className="mt-8">
+        <section className="mt-8 rounded-3xl p-5" style={{ backgroundColor: "#FFF8F6" }}>
           <h2 className="text-base font-extrabold">People you may know</h2>
           <p className="mt-1 text-sm font-semibold" style={{ color: "#AEB8A0" }}>
             Based on your contacts
@@ -208,10 +208,14 @@ function UserRow({
         onClick={onToggle}
         className={
           followed
-            ? "rounded-full px-4 py-2 text-xs font-extrabold text-foreground"
-            : "rounded-full bg-primary px-4 py-2 text-xs font-extrabold text-primary-foreground transition-opacity hover:opacity-90"
+            ? "rounded-full px-4 py-2 text-xs font-extrabold text-white"
+            : "rounded-full border-2 bg-transparent px-4 py-2 text-xs font-extrabold transition-opacity hover:opacity-90"
         }
-        style={followed ? { background: "#AEB8A0" } : undefined}
+        style={
+          followed
+            ? { background: "#AEB8A0" }
+            : { borderColor: "#FF5C34", color: "#FF5C34" }
+        }
       >
         {followed ? "Following" : "Follow"}
       </button>

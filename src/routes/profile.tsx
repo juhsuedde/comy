@@ -57,7 +57,7 @@ function Profile() {
         {/* Photo Grid */}
         <div className="mt-6 grid grid-cols-3 gap-2">
           {profileGrid.map((img, i) => (
-            <div key={i} className="aspect-square overflow-hidden rounded-2xl">
+            <div key={i} className="aspect-square overflow-hidden rounded-xl">
               <img
                 src={img}
                 alt={`Meal ${i + 1}`}
