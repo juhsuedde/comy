@@ -1,6 +1,6 @@
 import { Home, Plus, ScanFace, User } from "lucide-react";
 import { Link, useLocation } from "@tanstack/react-router";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 type NavItem = {
@@ -26,7 +26,7 @@ export function BottomNav() {
       style={{ bottom: "max(1rem, env(safe-area-inset-bottom))" }}
     >
       <ul
-        className="pointer-events-auto flex items-center gap-2 px-3 py-2"
+        className="pointer-events-auto flex items-center gap-1 px-3 py-2"
         style={{
           background: "#351E28",
           borderRadius: "40px",
@@ -38,36 +38,55 @@ export function BottomNav() {
             to === "/" ? pathname === "/" : pathname.startsWith(to);
 
           return (
-            <li key={label}>
+            <li key={label} className="relative">
               <Link to={to} aria-label={label} className="group block">
                 {primary ? (
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform group-hover:scale-105 group-active:scale-95">
-                    <Icon className="h-6 w-6" strokeWidth={2.5} />
-                  </span>
-                ) : (
-                  <motion.div
-                    layout
-                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                    className={cn(
-                      "flex items-center gap-1 rounded-full transition-colors",
-                      isActive
-                        ? "bg-[#FF5C34] text-white px-4 py-2"
-                        : "text-white/60 group-hover:text-white px-3 py-2"
-                    )}
+                  <motion.span
+                    whileTap={{ scale: 0.92 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 18 }}
+                    className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground"
+                    style={{ boxShadow: "0 6px 18px -6px rgba(255,92,52,0.55)" }}
                   >
-                    <Icon className="h-5 w-5" strokeWidth={isActive ? 2.5 : 2} />
+                    <Icon className="h-6 w-6" strokeWidth={2.5} />
+                  </motion.span>
+                ) : (
+                  <div className="relative flex items-center">
                     {isActive && (
                       <motion.span
-                        layout
-                        initial={{ opacity: 0, width: 0 }}
-                        animate={{ opacity: 1, width: "auto" }}
-                        exit={{ opacity: 0, width: 0 }}
-                        className="text-xs font-bold whitespace-nowrap overflow-hidden"
-                      >
-                        {label}
-                      </motion.span>
+                        layoutId="nav-pill"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        className="absolute inset-0 rounded-full"
+                        style={{
+                          background: "#FF5C34",
+                          boxShadow: "0 0 0 4px rgba(255,92,52,0.18), 0 4px 14px -4px rgba(255,92,52,0.55)",
+                        }}
+                      />
                     )}
-                  </motion.div>
+                    <motion.div
+                      whileTap={{ scale: 0.94 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 18 }}
+                      className={cn(
+                        "relative z-10 flex items-center gap-1 rounded-full transition-opacity",
+                        isActive ? "text-white px-4 py-2 opacity-100" : "text-white/55 px-3 py-2 group-hover:opacity-100 group-hover:text-white",
+                      )}
+                    >
+                      <Icon className="h-5 w-5" strokeWidth={isActive ? 2.5 : 1.75} />
+                      <AnimatePresence initial={false}>
+                        {isActive && (
+                          <motion.span
+                            key="label"
+                            initial={{ opacity: 0, width: 0, x: -4 }}
+                            animate={{ opacity: 1, width: "auto", x: 0 }}
+                            exit={{ opacity: 0, width: 0, x: -4 }}
+                            transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                            className="text-xs font-bold whitespace-nowrap overflow-hidden"
+                          >
+                            {label}
+                          </motion.span>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  </div>
                 )}
               </Link>
             </li>
