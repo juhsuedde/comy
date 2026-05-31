@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Bell } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { BottomNav } from "@/components/BottomNav";
@@ -37,6 +37,10 @@ function Feed() {
   const { user } = useAuth();
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const { scrollY } = useScroll();
+  const greetingOpacity = useTransform(scrollY, [0, 80], [1, 0]);
+  const greetingHeight = useTransform(scrollY, [0, 80], [28, 0]);
+
   useEffect(() => {
     const t = setTimeout(() => setLoading(false), 700);
     return () => clearTimeout(t);
@@ -53,37 +57,42 @@ function Feed() {
   return (
     <div className="min-h-screen bg-[#FFFBF7] pb-32">
       <PullToRefresh onRefresh={handleRefresh}>
-        <header className="mx-auto max-w-md px-5 pt-8 sm:px-6 sm:pt-10">
+        <header className="sticky top-0 z-30 mx-auto max-w-md px-5 pt-8 sm:px-6 sm:pt-10 bg-[#FFFBF7]/85 backdrop-blur-md">
           <div className="flex items-start justify-between">
             <div className="flex flex-col">
               <Logo className="text-3xl" />
-              <p className="mt-2 text-sm font-semibold text-muted-foreground">
+              <motion.p
+                style={{ opacity: greetingOpacity, height: greetingHeight }}
+                className="mt-1 text-sm font-semibold text-[#2A1F1B]/60 overflow-hidden"
+              >
                 Hey {user?.username ?? "there"} 👋 what&apos;s everyone eating today?
-              </p>
+              </motion.p>
             </div>
             <div className="flex items-center gap-3">
-              <button
+              <motion.button
                 type="button"
                 aria-label="Notifications"
-                className="relative flex h-10 w-10 items-center justify-center rounded-full text-foreground transition-colors hover:bg-muted"
+                whileTap={{ scale: 0.92 }}
+                transition={{ type: "spring", stiffness: 400, damping: 18 }}
+                className="relative flex h-10 w-10 items-center justify-center rounded-full text-[#2A1F1B] transition-colors hover:bg-[#2A1F1B]/5"
               >
                 <Bell className="h-5 w-5" strokeWidth={2} />
                 <span className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-primary" />
-              </button>
+              </motion.button>
               <img
                 src={user?.avatar_url ?? ""}
                 alt="You"
-                className="h-10 w-10 rounded-full object-cover"
+                className="h-10 w-10 rounded-full object-cover ring-2 ring-[#FF5C34]/30"
               />
             </div>
           </div>
 
-          <div className="mt-6">
+          <div className="mt-4 pb-3">
             <FilterPills />
           </div>
         </header>
 
-        <section className="mx-auto mt-8 max-w-md px-5 sm:px-6">
+        <section className="mx-auto mt-6 max-w-md px-5 sm:px-6">
           {loading ? (
             <>
               <MealCardSkeleton />
