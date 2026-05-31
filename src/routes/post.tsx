@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { motion } from "framer-motion";
 import { Camera, X, Sun, Salad, Moon, Cookie, CircleEllipsis } from "lucide-react";
 import { toast } from "sonner";
 import { BottomNav } from "@/components/BottomNav";
+
 
 const categoryConfig = [
   { label: "Breakfast", Icon: Sun, bg: "#F7FAD0", previewBg: "bg-[#E9F056]/10" },
@@ -77,44 +79,46 @@ function PostMeal() {
     navigate({ to: "/" });
   };
 
+  const activeCat = categoryConfig.find((c) => c.label === category);
+  const accent = activeCat?.label === "Lunch" ? "#FF5C34"
+    : activeCat?.label === "Breakfast" ? "#E9F056"
+    : activeCat?.label === "Dinner" ? "#351E2B"
+    : activeCat?.label === "Snack" ? "#AEB8A0"
+    : "#FF5C34";
+
   return (
-    <div className="min-h-screen bg-[#FFFBF7] pb-32">
+    <div className="min-h-screen bg-[#FFFBF7] pb-40">
       <div className="mx-auto max-w-md px-6 pt-10">
         {/* Photo Upload Area */}
-        <button
+        <motion.button
           type="button"
           onClick={() => fileInputRef.current?.click()}
-          className={`relative flex h-[42vh] min-h-[200px] w-full flex-col items-center justify-center overflow-hidden transition-colors focus:outline-none ${
-            photo
-              ? "rounded-3xl"
-              : `rounded-3xl border-2 border-dashed border-foreground/15 ${category ? categoryConfig.find(c => c.label === category)?.previewBg ?? "bg-muted" : "bg-muted"}`
+          whileTap={{ scale: 0.98 }}
+          transition={{ type: "spring", stiffness: 400, damping: 18 }}
+          animate={{
+            backgroundColor: photo ? "transparent" : activeCat?.bg ?? "#EDEEE9",
+          }}
+          className={`relative flex h-[42vh] min-h-[200px] w-full flex-col items-center justify-center overflow-hidden rounded-3xl transition-colors focus:outline-none ${
+            photo ? "" : "border-2 border-dashed border-[#2A1F1B]/15"
           }`}
         >
           {photo ? (
             <>
-              <img
-                src={photo}
-                alt="Meal preview"
-                className="h-full w-full object-cover"
-              />
-              <button
+              <img src={photo} alt="Meal preview" className="h-full w-full object-cover" />
+              <motion.button
                 type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  removePhoto();
-                }}
-                className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm transition-transform active:scale-90"
+                onClick={(e) => { e.stopPropagation(); removePhoto(); }}
+                whileTap={{ scale: 0.9 }}
+                className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm"
                 aria-label="Remove photo"
               >
                 <X className="h-4 w-4" strokeWidth={2.5} />
-              </button>
+              </motion.button>
             </>
           ) : (
-            <div className="flex flex-col items-center gap-3 text-foreground/40">
+            <div className="flex flex-col items-center gap-3 text-[#2A1F1B]/40">
               <Camera className="h-10 w-10" strokeWidth={1.5} />
-              <span className="text-sm font-bold">
-                Tap to add your meal photo
-              </span>
+              <span className="text-sm font-bold">Tap to add your meal photo</span>
             </div>
           )}
           <input
@@ -124,7 +128,7 @@ function PostMeal() {
             className="hidden"
             onChange={handleFileChange}
           />
-        </button>
+        </motion.button>
 
         {/* Title */}
         <div className="mt-6">
@@ -133,7 +137,7 @@ function PostMeal() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="What did you eat?"
-            className="w-full bg-transparent text-2xl font-extrabold text-foreground placeholder:text-foreground/30 focus:outline-none"
+            className="w-full bg-transparent text-2xl font-extrabold text-[#2A1F1B] placeholder:text-[#2A1F1B]/30 focus:outline-none"
           />
         </div>
 
@@ -145,20 +149,22 @@ function PostMeal() {
                 const isActive = c.label === category;
                 const Icon = c.Icon;
                 return (
-                  <button
+                  <motion.button
                     key={c.label}
                     type="button"
                     onClick={() => setCategory(isActive ? null : c.label)}
+                    whileTap={{ scale: 0.94 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 18 }}
                     style={{
                       background: isActive ? "var(--primary)" : c.bg,
                       color: isActive ? "var(--primary-foreground)" : "var(--foreground)",
-                      borderColor: isActive ? "transparent" : "#EDEEE9",
+                      borderColor: isActive ? "transparent" : "rgba(42,31,27,0.08)",
                     }}
-                    className="flex min-w-[60px] flex-col items-center justify-center gap-0.5 rounded-2xl border px-2.5 py-2 text-xs font-bold transition-all active:scale-95"
+                    className="flex min-w-[60px] flex-col items-center justify-center gap-0.5 rounded-2xl border px-2.5 py-2 text-xs font-bold"
                   >
                     <Icon className="h-4 w-4" />
                     <span>{c.label}</span>
-                  </button>
+                  </motion.button>
                 );
               })}
             </div>
@@ -166,13 +172,19 @@ function PostMeal() {
         </div>
 
         {/* Description */}
-        <div className="mt-5">
+        <div
+          className="mt-5 rounded-2xl border-2 p-3 transition-all"
+          style={{
+            borderColor: category ? `color-mix(in srgb, ${accent} 35%, transparent)` : "rgba(42,31,27,0.08)",
+            boxShadow: category ? `0 0 0 4px color-mix(in srgb, ${accent} 10%, transparent)` : "none",
+          }}
+        >
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Add a note, recipe, or vibe..."
             rows={3}
-            className="w-full resize-none bg-transparent text-base font-semibold text-foreground placeholder:text-[#AEB8A0] focus:outline-none"
+            className="w-full resize-none bg-transparent text-base font-semibold text-[#2A1F1B] placeholder:text-[#2A1F1B]/40 focus:outline-none"
           />
         </div>
 
@@ -181,19 +193,22 @@ function PostMeal() {
           {tagOptions.map(({ label, emoji }) => {
             const isActive = tags.includes(label);
             return (
-              <button
+              <motion.button
                 key={label}
                 type="button"
                 onClick={() => toggleTag(label)}
-                className={`flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-bold transition-all active:scale-95 ${
+                whileTap={{ scale: 0.94 }}
+                transition={{ type: "spring", stiffness: 400, damping: 18 }}
+                className="flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-bold transition-colors"
+                style={
                   isActive
-                    ? "bg-primary/15 text-primary"
-                    : "bg-secondary text-foreground/60 hover:bg-secondary/80"
-                }`}
+                    ? { background: "color-mix(in srgb, #FF5C34 18%, transparent)", color: "#FF5C34" }
+                    : { background: "color-mix(in srgb, #2A1F1B 5%, transparent)", color: "color-mix(in srgb, #2A1F1B 60%, transparent)" }
+                }
               >
                 <span>{emoji}</span>
                 <span>{label}</span>
-              </button>
+              </motion.button>
             );
           })}
         </div>
@@ -205,18 +220,21 @@ function PostMeal() {
           const isReady = hasPhoto || hasTitle;
           const isComplete = hasPhoto && hasTitle;
           return (
-            <button
+            <motion.button
               type="button"
               onClick={isReady ? handlePost : undefined}
               disabled={!isReady}
-              className={`mt-8 flex w-full items-center justify-center rounded-2xl py-4 text-base font-extrabold transition-transform active:scale-[0.98] ${
+              whileTap={isReady ? { scale: 0.97 } : undefined}
+              transition={{ type: "spring", stiffness: 400, damping: 18 }}
+              className={`mt-8 flex w-full items-center justify-center rounded-2xl py-4 text-base font-extrabold ${
                 isReady
                   ? "bg-primary text-primary-foreground cursor-pointer"
-                  : "bg-muted text-foreground/40 opacity-50 cursor-not-allowed"
+                  : "bg-[#2A1F1B]/5 text-[#2A1F1B]/40 cursor-not-allowed"
               } ${isComplete ? "animate-gentle-pulse" : ""}`}
+              style={isReady ? { boxShadow: "0 6px 18px -6px rgba(255,92,52,0.45)" } : undefined}
             >
               Post it
-            </button>
+            </motion.button>
           );
         })()}
       </div>
@@ -225,3 +243,4 @@ function PostMeal() {
     </div>
   );
 }
+
