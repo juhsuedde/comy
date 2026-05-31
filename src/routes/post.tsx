@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { motion } from "framer-motion";
 import { Camera, X, Sun, Salad, Moon, Cookie, CircleEllipsis } from "lucide-react";
 import { toast } from "sonner";
 import { BottomNav } from "@/components/BottomNav";
+
 
 const categoryConfig = [
   { label: "Breakfast", Icon: Sun, bg: "#F7FAD0", previewBg: "bg-[#E9F056]/10" },
