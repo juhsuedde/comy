@@ -97,17 +97,15 @@ function MealDetail() {
             className="h-9 w-9 rounded-full object-cover"
           />
           <div className="flex items-baseline gap-2">
-            <span className="text-sm font-bold">{meal.authorName}</span>
-            <span className="text-xs font-medium" style={{ color: "#AEB8A0" }}>
-              · {meal.timeAgo}
-            </span>
+            <span className="text-sm font-bold text-[#2A1F1B]">{meal.authorName}</span>
+            <span className="text-xs font-medium text-[#2A1F1B]/50">· {meal.timeAgo}</span>
           </div>
         </div>
 
         {/* Category */}
         <div className="mt-4">
           <span
-            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold"
+            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold text-[#2A1F1B]"
             style={{ background: cat.bg }}
           >
             <CatIcon className="h-3.5 w-3.5" />
@@ -116,13 +114,13 @@ function MealDetail() {
         </div>
 
         {/* Title */}
-        <h1 className="mt-3 text-3xl font-black tracking-tight leading-tight">
+        <h1 className="mt-3 text-3xl font-black tracking-tight leading-tight text-[#2A1F1B]">
           {meal.title}
         </h1>
 
         {/* Description */}
         {meal.description && (
-          <p className="mt-3 text-base font-medium text-muted-foreground">
+          <p className="mt-3 text-base font-medium leading-relaxed text-[#2A1F1B]/70">
             {meal.description}
           </p>
         )}
@@ -135,7 +133,7 @@ function MealDetail() {
                 <span
                   key={t}
                   className="rounded-full px-3 py-1.5 text-xs font-bold"
-                  style={{ background: "#EDEEE9", color: "#AEB8A0" }}
+                  style={{ background: "color-mix(in srgb, #2A1F1B 5%, transparent)", color: "color-mix(in srgb, #2A1F1B 60%, transparent)" }}
                 >
                   #{t}
                 </span>
@@ -143,6 +141,7 @@ function MealDetail() {
             </div>
           </div>
         )}
+
 
         {/* Reactions */}
         <div className="mt-7 flex flex-wrap gap-3">
@@ -167,7 +166,7 @@ function MealDetail() {
         </div>
 
         {/* Comments */}
-        <h2 className="mt-8 text-lg font-extrabold">
+        <h2 className="mt-8 text-lg font-extrabold text-[#2A1F1B]">
           Comments ({meal.comments.length})
         </h2>
         <ul className="mt-4 space-y-5">
@@ -176,16 +175,14 @@ function MealDetail() {
               <img
                 src={c.avatar}
                 alt={c.name}
-                className="h-9 w-9 flex-shrink-0 rounded-full object-cover"
+                className="h-9 w-9 flex-shrink-0 rounded-full object-cover ring-2 ring-[#FF5C34]/20"
               />
               <div className="flex-1">
                 <div className="flex items-baseline gap-2">
-                  <span className="text-sm font-bold">{c.name}</span>
-                  <span className="text-xs font-medium" style={{ color: "#AEB8A0" }}>
-                    {c.timeAgo}
-                  </span>
+                  <span className="text-sm font-bold text-[#2A1F1B]">{c.name}</span>
+                  <span className="text-xs font-medium text-[#2A1F1B]/50">{c.timeAgo}</span>
                 </div>
-                <p className="mt-0.5 text-sm font-medium leading-relaxed">
+                <p className="mt-0.5 text-sm font-medium leading-relaxed text-[#2A1F1B]">
                   {c.text}
                 </p>
               </div>
@@ -208,15 +205,17 @@ function MealDetail() {
           <input
             type="text"
             placeholder="Add a comment..."
-            className="flex-1 bg-transparent text-sm font-medium placeholder:text-muted-foreground focus:outline-none"
+            className="flex-1 bg-transparent text-sm font-medium text-[#2A1F1B] placeholder:text-[#2A1F1B]/40 focus:outline-none"
           />
-          <button
+          <motion.button
             type="button"
             aria-label="Send"
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-primary-foreground transition active:scale-95"
+            whileTap={{ scale: 0.92 }}
+            transition={{ type: "spring", stiffness: 400, damping: 18 }}
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-primary-foreground"
           >
             <Send className="h-4 w-4" strokeWidth={2.5} />
-          </button>
+          </motion.button>
         </div>
       </div>
 
@@ -224,3 +223,4 @@ function MealDetail() {
     </div>
   );
 }
+
