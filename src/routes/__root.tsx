@@ -4,27 +4,35 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
-  useLocation,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { PageTransition } from "@/components/PageTransition";
 
 import appCss from "../styles.css?url";
 
+
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-screen items-center justify-center bg-[#FFFBF7] px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+        <div
+          className="mx-auto flex h-28 w-28 items-center justify-center rounded-full text-5xl"
+          style={{ background: "color-mix(in srgb, #FF5C34 12%, transparent)" }}
+        >
+          🍽️
+        </div>
+        <h1 className="mt-6 text-5xl font-black tracking-tight text-[#2A1F1B]">404</h1>
+        <h2 className="mt-2 text-lg font-bold text-[#2A1F1B]">Cardápio não encontrado</h2>
+        <p className="mt-2 text-sm font-semibold text-[#2A1F1B]/60">
+          A página que você procura saiu do menu.
         </p>
         <div className="mt-6">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-bold text-primary-foreground"
+            style={{ boxShadow: "0 6px 18px -6px rgba(255,92,52,0.45)" }}
           >
             Go home
           </Link>
@@ -39,13 +47,19 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   const router = useRouter();
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-screen items-center justify-center bg-[#FFFBF7] px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
+        <div
+          className="mx-auto flex h-28 w-28 items-center justify-center rounded-full text-5xl"
+          style={{ background: "color-mix(in srgb, #FF5C34 12%, transparent)" }}
+        >
+          🍳
+        </div>
+        <h1 className="mt-6 text-2xl font-black tracking-tight text-[#2A1F1B]">
+          Ops, queimamos o prato
         </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+        <p className="mt-2 text-sm font-semibold text-[#2A1F1B]/60">
+          Nossa cozinha digital travou. Tenta de novo ou volta pra home.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -53,13 +67,14 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-bold text-primary-foreground"
+            style={{ boxShadow: "0 6px 18px -6px rgba(255,92,52,0.45)" }}
           >
             Try again
           </button>
           <a
             href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+            className="inline-flex items-center justify-center rounded-full border-2 border-[#2A1F1B]/10 bg-transparent px-5 py-3 text-sm font-bold text-[#2A1F1B]"
           >
             Go home
           </a>
@@ -68,6 +83,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     </div>
   );
 }
+
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
@@ -112,15 +128,15 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const { pathname } = useLocation();
 
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <div key={pathname} className="animate-fade-in">
+        <PageTransition>
           <Outlet />
-        </div>
+        </PageTransition>
       </AuthProvider>
     </QueryClientProvider>
   );
 }
+
